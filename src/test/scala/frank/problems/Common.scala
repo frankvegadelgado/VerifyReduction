@@ -27,9 +27,9 @@ trait Common extends Matchers {
     }
   }
 
-  def verifySat(verifier: Reduction[KExactCover2, ExactSeparateCover2, Array[Int]], reducer: Reduction[MonotoneNaeSat, MinXor2Sat, Any], composer: Reduction[MinXor2Sat, KExactCover2, Any], input: Formula, certificate: Array[Int]) = {
-    verifier.reduction(composer.reduction(reducer.reduction(MonotoneNaeSat(input))), Some(certificate)) should matchPattern {
-      case output:ExactSeparateCover2 =>
+  def verifySat(logarithmic: Reduction[ExactSeparateCover2, ExactCover2, Any], verifier: Reduction[KExactCover2, ExactSeparateCover2, Array[Int]], reducer: Reduction[MonotoneNaeSat, MinXor2Sat, Any], composer: Reduction[MinXor2Sat, KExactCover2, Any], input: Formula, certificate: Array[Int]) = {
+    logarithmic.reduction(verifier.reduction(composer.reduction(reducer.reduction(MonotoneNaeSat(input))), Some(certificate))) should matchPattern {
+      case output:ExactCover2 =>
     }
   }
 }

@@ -59,7 +59,7 @@ object ReductionInLogarithmicSpace extends Reduction[ExactSeparateCover2, ExactC
       for(j <- input.m + 1 to input.pairs.size){
         val pairJ = input.pairs.zipWithIndex.find(z => z._2 == j - 1).get._1
         if (pairI._1 == pairJ._1) {
-          if (list.last > pairJ._2.head) throw new IllegalArgumentException("The input is not a valid instance")
+          if (list.size > 0 && pairJ._2.size > 0 && list.last > pairJ._2.head) throw new IllegalArgumentException("The input is not a valid instance")
           list = list ++ pairJ._2
         }
       }
