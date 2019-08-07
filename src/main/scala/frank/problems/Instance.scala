@@ -23,7 +23,7 @@ case class MonotoneNaeSat(formula: Formula) extends Instance{
 /**
   * A positive integer K and a Boolean formula that is an instance of
   * XOR 2SAT such that each clause has no negation variables.
-  * Question: Is there a truth assignment in  such that at most K clauses are unsatisfiable?
+  * Question: Is there a truth assignment in the formula such that at most K clauses are unsatisfiable?
   * This problem is in NP-complete.
   */
 case class MinXor2Sat(K: Int, formula: Formula) extends Instance{
