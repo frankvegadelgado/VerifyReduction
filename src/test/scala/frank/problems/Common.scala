@@ -15,4 +15,10 @@ trait Common extends Matchers {
     }
   }
 
+  def composeReduceSat(reducer: Reduction[MonotoneNaeSat, MinXor2Sat], composer: Reduction[MinXor2Sat, KExactCover2], input: Formula) = {
+    composer.reduction(reducer.reduction(MonotoneNaeSat(input))) should matchPattern {
+      case output:KExactCover2 =>
+    }
+  }
+
 }

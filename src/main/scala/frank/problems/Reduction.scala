@@ -26,3 +26,14 @@ object ReductionKnownNPComplete extends Reduction[MonotoneNaeSat, MinXor2Sat]{
     MinXor2Sat(input.formula.clauseCount, Formula(clauses.flatten: _*))
   }
 }
+
+object ReductionNewNPComplete extends Reduction[MinXor2Sat, KExactCover2]{
+  override def reduction(input: MinXor2Sat): KExactCover2 = {
+
+    val family: Seq[List[(Int, Int)]] = for {(clause, index) <- input.formula.clauses.zipWithIndex} yield {
+      List((clause.literals.zipWithIndex.find(_._2 == 0).get._1, index + 1),
+        (clause.literals.zipWithIndex.find(_._2 == 1).get._1, index + 1))
+    }
+    KExactCover2(input.formula.clauseCount, (1 to input.formula.clauseCount).toSet, family.flatten.groupBy(_._1).map(g => g._2.map(_._2).toSet).toList)
+  }
+}

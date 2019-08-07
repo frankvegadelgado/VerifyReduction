@@ -48,7 +48,7 @@ case class KExactCover2(K: Int, U: Set[Int], family: List[Set[Int]]) extends Ins
   assert(K <= U.size, "K should be at most all the elements in the universe")
   assert(family.forall(s => s.intersect(U) == s), "Si should be a subset of U")
   assert(family.flatten.toSet == U, "U should be the universe set")
-  assert((family.map(_.toList).flatten.groupBy(identity).collect { case (x, List(_,_,_*)) => x }).size == 0, "Should every element in U appears at most twice in the list")
+  assert((family.map(_.toList).flatten.groupBy(identity).collect { case (x, List(_,_,_,_*)) => x }).size == 0, "Should every element in U appears at most twice in the list")
 
 }
 
@@ -71,7 +71,7 @@ case class KExactCover2(K: Int, U: Set[Int], family: List[Set[Int]]) extends Ins
 case class ExactSeparateCover2(m: Int, universe: List[Set[Int]], pairs: List[(Int, List[Int])]) extends Instance{
   assert(pairs.map(_._2).forall(s => s.toSet.intersect(universe.flatten.toSet) == s.toSet), "Si should be a subset of U for a pair pair Ti = (x, Si)")
   assert(pairs.map(_._2).flatten.toSet == universe.flatten.toSet, "U1 union . . . union Uk = U should be the universe set")
-  assert((pairs.map(_._2).map(_.toList).flatten.groupBy(identity).collect { case (x, List(_,_,_*)) => x }).size == 0, "Should every element in U appears at most twice in the list S1, . . . , Sn from the pairs T1, . . . , Tn")
+  assert((pairs.map(_._2).map(_.toList).flatten.groupBy(identity).collect { case (x, List(_,_,_,_*)) => x }).size == 0, "Should every element in U appears at most twice in the list S1, . . . , Sn from the pairs T1, . . . , Tn")
   assert(pairs.map(_._2).forall(s => s.sorted == s), "Should the elements in the set Si of each pair Ti appear sorted in the input with ascending order")
   assert(pairs.forall(p => pairs.take(m).exists(q => q._1 == p._1)), "Should every pair Tj = (x, Sj), the positive integer x appears exactly once in a single pair Ti = (x, Si) for i <= m")
   assert(pairs.groupBy(_._1).forall(g => g._2.flatMap(_._2).sorted == g._2.flatMap(_._2)), "Should we have two pairs Ti = (x, Si) and Tj = (y, Sj) such that x = y, i < j, Si != empty set and Sj != empty set, then the minimum element of Sj is greater than the maximum element of Si.")
@@ -88,7 +88,7 @@ case class ExactSeparateCover2(m: Int, universe: List[Set[Int]], pairs: List[(In
 case class ExactCover2(U: Set[Int], family: List[Set[Int]]) extends Instance{
   assert(family.forall(s => s.intersect(U) == s), "Si should be a subset of U")
   assert(family.flatten.toSet == U, "U should be the universe set")
-  assert((family.map(_.toList).flatten.groupBy(identity).collect { case (x, List(_,_,_*)) => x }).size == 0, "Should every element in U appears at most twice in the list")
+  assert((family.map(_.toList).flatten.groupBy(identity).collect { case (x, List(_,_,_,_*)) => x }).size == 0, "Should every element in U appears at most twice in the list")
 
 }
 
