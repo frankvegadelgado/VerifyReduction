@@ -21,4 +21,9 @@ trait Common extends Matchers {
     }
   }
 
+  def reduceLogarithmic(reducer: Reduction[ExactSeparateCover2, ExactCover2], input: ExactSeparateCover2) = {
+    reducer.reduction(input) should matchPattern {
+      case output:ExactCover2 =>
+    }
+  }
 }
