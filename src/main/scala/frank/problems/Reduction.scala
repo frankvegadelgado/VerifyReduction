@@ -4,7 +4,7 @@ import frank.sat.{Clause, Formula}
 
 /**
   * Created by frank on 8/7/2019.
-  * The reduction of a problem into another one
+  * The reduction of a problem into another one using a certificate
   */
 trait Reduction[U<:Instance, V<:Instance, C] {
   def reduction(input: U, certificate: Option[C] = None): V
@@ -110,8 +110,6 @@ object ReductionWithVerification extends Reduction[KExactCover2, ExactSeparateCo
       }
       min = max + 1
     }
-    // if (universe.size != universe.toSet.size) throw new IllegalArgumentException("The input is not a valid instance")
-    // Output the family of sets Si
     ExactSeparateCover2(m, universe, pairs.reverse)
   }
 }
