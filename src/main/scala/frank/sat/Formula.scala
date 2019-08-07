@@ -79,6 +79,14 @@ case class Formula(clauses: Clause*) {
     clauses.flatMap(_.variables).toSet.size
 
   /**
+    * Unique variables in the formula.
+    *
+    * @return Unique variable count
+    */
+  def variables: Set[Int] =
+    clauses.flatMap(_.variables).toSet
+
+  /**
     * Count clauses in the formula.
     *
     * @return Clause count
