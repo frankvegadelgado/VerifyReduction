@@ -76,7 +76,7 @@ object ReductionInLogarithmicSpace extends Reduction[ExactSeparateCover2, ExactC
   */
 object ReductionWithVerification extends Reduction[KExactCover2, ExactSeparateCover2, Array[Int]]{
   override def reduction(input: KExactCover2, certificate: Option[Array[Int]] = None): ExactSeparateCover2 = {
-    if (certificate.isEmpty) throw new IllegalArgumentException("The certificate is not a valid")
+    if (certificate.isEmpty) throw new IllegalArgumentException("The certificate is not valid")
     val array: Array[Int] = certificate.get
     // Output the value of m
     val m = input.family.size
@@ -86,10 +86,10 @@ object ReductionWithVerification extends Reduction[KExactCover2, ExactSeparateCo
     var max = 0
     for(i <- 1 to input.K + 1){
       if (i == input.K + 1){
-        if (array.size >  input.K) throw new IllegalArgumentException("The certificate is not a valid")
+        if (array.size >  input.K) throw new IllegalArgumentException("The certificate is not valid")
         max = input.U.max + 1
       } else if (array.size < i || array(i - 1) <= max || !input.U.contains(array(i - 1))) {
-        throw new IllegalArgumentException("The certificate is not a valid")
+        throw new IllegalArgumentException("The certificate is not valid")
       } else {
         max = array(i - 1)
       }
@@ -98,7 +98,8 @@ object ReductionWithVerification extends Reduction[KExactCover2, ExactSeparateCo
         if (input.U.contains(er))
           set = set + er
       }
-      if (set.size > 0) universe = set::universe
+      // Finalize the set output
+      universe = set::universe
       for(j <- 1 to m){
         var list: List[Int] = Nil
         val setJ = input.family.zipWithIndex.find(z => z._2 == j - 1).get._1
@@ -106,6 +107,7 @@ object ReductionWithVerification extends Reduction[KExactCover2, ExactSeparateCo
           if (setJ.contains(ej))
             list = ej::list
         }
+        // Finalize the pair output
         pairs = (j, list.reverse)::pairs
       }
       min = max + 1
