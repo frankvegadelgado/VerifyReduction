@@ -54,7 +54,7 @@ case class KExactCover2(K: Int, U: Set[Int], family: List[Set[Int]]) extends Ins
 
 
 /**
-  * A positive integer m, a family of sets U1, . . . ,Uk from a “universe" set
+  * A positive integer m, a family of disjoint sets U1, . . . ,Uk from a “universe" set
   * U1 union . . . union Uk = U and a collection of n pairs Ti = (x, Si) such that x is a positive integer
   * and Si is a subset of U is a set with the property that every element in U appears at most twice in the
   * list S1, . . . , Sn from the pairs T1, . . . , Tn. For every pair Tj = (x, Sj), the positive integer x
@@ -69,6 +69,7 @@ case class KExactCover2(K: Int, U: Set[Int], family: List[Set[Int]]) extends Ins
   * This problem is in L.
   */
 case class ExactSeparateCover2(m: Int, universe: List[Set[Int]], pairs: List[(Int, List[Int])]) extends Instance{
+  assert(universe.flatMap(_.toList).size == universe.flatten.toSet.size, "The family of sets U1, . . . ,Uk from a universe set U1 union . . . union Uk = U are disjoint")
   assert(pairs.map(_._2).forall(s => s.toSet.intersect(universe.flatten.toSet) == s.toSet), "Si should be a subset of U for a pair pair Ti = (x, Si)")
   assert(pairs.map(_._2).flatten.toSet == universe.flatten.toSet, "U1 union . . . union Uk = U should be the universe set")
   assert((pairs.map(_._2).map(_.toList).flatten.groupBy(identity).collect { case (x, List(_,_,_,_*)) => x }).size == 0, "Should every element in U appears at most twice in the list S1, . . . , Sn from the pairs T1, . . . , Tn")
