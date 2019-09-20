@@ -175,7 +175,7 @@ $\textbf{MINIMUM EXCLUSIVE-OR 2-SATISFIABILITY}$
 
 INSTANCE: A positive integer $K$ and a Boolean formula $\phi$ that is an instance of $\textit{XOR 2SAT}$ such that each clause has no negation variables.
 
-QUESTION: Is there a truth assignment in $\phi$ such that exactly $K$ clauses are unsatisfiable?
+QUESTION: Is there a truth assignment in $\phi$ such that at most $K$ clauses are unsatisfiable?
 
 REMARKS: We denote this problem as $MIN\oplus2SAT$.
 \end{definition}
@@ -189,7 +189,7 @@ $MIN\oplus2SAT \in \textit{NP--complete}$.
 \begin{proof}
 It is trivial to see $MIN\oplus2SAT \in NP$ \cite{Pap03}. Given a Boolean formula $\phi$ in $3CNF$ with $n$ variables and $m$ clauses such that each clause has no negation variables, we create three new variables $a_{c_{i}}$, $b_{c_{i}}$ and $d_{c_{i}}$ for each clause $c_{i} = (x \vee y \vee z)$ in $\phi$, where $x$, $y$ and $z$ are positive literals, in the following formula:
 \[P_{i} = (a_{c_{i}} \oplus b_{c_{i}}) \wedge (b_{c_{i}} \oplus d_{c_{i}}) \wedge (a_{c_{i}} \oplus d_{c_{i}}) \wedge (x \oplus a_{c_{i}}) \wedge (y \oplus b_{c_{i}}) \wedge (z \oplus d_{c_{i}}).\]
-We can see $P_{i}$ has exactly one unsatisfiable clause for some truth assignment if and only if at least one member of $\{x,y,z\}$ is true and at least one member of $\{x,y,z\}$ is false for the same truth assignment. Hence, we can create the Boolean formula $\psi$ as the conjunction of the $P_{i}$ formulas for every clause $c_{i}$ in $\phi$, such that $\psi = P_{1} \wedge \ldots \wedge P_{m}$. Finally, we obtain that
+We can see $P_{i}$ has at most one unsatisfiable clause for some truth assignment if and only if at least one member of $\{x,y,z\}$ is true and at least one member of $\{x,y,z\}$ is false for the same truth assignment. Hence, we can create the Boolean formula $\psi$ as the conjunction of the $P_{i}$ formulas for every clause $c_{i}$ in $\phi$, such that $\psi = P_{1} \wedge \ldots \wedge P_{m}$. Finally, we obtain that
 \[\phi \in \textit{MONOTONE NAE 3SAT} \textit{ if and only if } (\psi, m) \in MIN\oplus2SAT.\]
 Consequently, we prove $\textit{MONOTONE NAE 3SAT} \leq_{p} MIN\oplus2SAT$ where we already know the language $\textit{MONOTONE NAE 3SAT} \in \textit{NP--complete}$ \cite{GJ79}. To sum up, we show $MIN\oplus2SAT \in \textit{NP--hard}$ and $MIN\oplus2SAT \in NP$ and thus, $MIN\oplus2SAT \in \textit{NP--complete}$.
 \end{proof}
