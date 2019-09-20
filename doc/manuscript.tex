@@ -1,0 +1,262 @@
+
+\documentclass[a4paper,UKenglish,cleveref, autoref]{lipics-v2019}
+%This is a template for producing LIPIcs articles.
+%See lipics-manual.pdf for further information.
+%for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+%for british hyphenation rules use option "UKenglish", for american hyphenation rules use option "USenglish"
+%for section-numbered lemmas etc., use "numberwithinsect"
+%for enabling cleveref support, use "cleveref"
+%for enabling cleveref support, use "autoref"
+
+\usepackage{url}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\algrenewcommand{\algorithmiccomment}[1]{\State /*#1*/}
+\algnewcommand\algorithmicto{$\textbf{to}$}
+\algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2 \algorithmicto\ #3 \algorithmicdo}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+%\graphicspath{{./graphics/}}%helpful if your graphic files are in another directory
+
+\bibliographystyle{plainurl}% the mandatory bibstyle
+
+\title{Logarithmic Space Verifiers on NP-complete} %TODO Please add
+
+%\titlerunning{P vs NP}%optional, please use if title is longer than one line
+
+\author{Frank Vega}{Joysonic, Uzun Mirkova 5, Belgrade, 11000, Serbia} {vega.frank@gmail.com}{https://orcid.org/0000-0001-8210-4126}{}
+
+
+\authorrunning{F. Vega}%TODO mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
+
+%\Copyright{John Q. Public and Joan R. Public}%TODO mandatory, please use full first names. LIPIcs license is "CC-BY";  http://creativecommons.org/licenses/by/3.0/
+
+\ccsdesc[500]{Theory of computation~Complexity classes}
+\ccsdesc[300]{Theory of computation~Problems, reductions and completeness}
+%\ccsdesc[100]{Mathematics of computing~Number-theoretic computations}%TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm
+
+\keywords{complexity classes, completeness, verifier, reduction, polynomial time, logarithmic space}%TODO mandatory; please add comma-separated list of keywords
+
+%\category{}%optional, e.g. invited paper
+
+%\relatedversion{}%optional, e.g. full version hosted on arXiv, HAL, or other respository/website
+%\relatedversion{A full version of the paper is available at \url{https://www.academia.edu/39721020/Solution_of_the_P_versus_NP_Problem}.}
+
+%\supplement{}%optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
+
+%\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
+
+%\acknowledgements{I want to thank \dots}%optional
+
+\nolinenumbers %uncomment to disable line numbering
+
+\hideLIPIcs  %uncomment to remove references to LIPIcs series (logo, DOI, ...), e.g. when preparing a pre-final version to be uploaded to arXiv or another public repository
+
+%Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\EventEditors{John Q. Open and Joan R. Access}
+%\EventNoEds{2}
+%\EventLongTitle{42nd Conference on Very Important Topics (CVIT 2016)}
+%\EventShortTitle{CVIT 2016}
+%\EventAcronym{CVIT}
+%\EventYear{2016}
+%\EventDate{December 24--27, 2016}
+%\EventLocation{Little Whinging, United Kingdom}
+%\EventLogo{}
+%\SeriesVolume{42}
+%\ArticleNo{23}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+%TODO mandatory: add short abstract of the document
+\begin{abstract}
+P versus NP is considered as one of the most important open problems in computer science. This consists in knowing the answer of the following question: Is P equal to NP? A precise statement of the P versus NP problem was introduced independently by Stephen Cook and Leonid Levin. Since that date, all efforts to find a proof for this problem have failed. NP is the complexity class of languages defined by polynomial time verifiers M such that when the input is an element of the language with its certificate, then M outputs a string which belongs to a single language in P. Another major complexity classes are L and NL. The certificate-based definition of NL is based on logarithmic space Turing machine with an additional special read-once input tape: This is called a logarithmic space verifier. NL is the complexity class of languages defined by logarithmic space verifiers M such that when the input is an element of the language with its certificate, then M outputs 1. To attack the P versus NP problem, the NP-completeness is a useful concept. We demonstrate there is an NP-complete language defined by a logarithmic space verifier M such that when the input is an element of the language with its certificate, then M outputs a string which belongs to a single language in L.
+\end{abstract}
+
+\section{Introduction}
+
+The $P$ versus $NP$ problem is a major unsolved problem in computer science \cite{CS00}. This is considered by many to be the most important open problem in the field \cite{CS00}. It is one of the seven Millennium Prize Problems selected by the Clay Mathematics Institute to carry a US\$1,000,000 prize for the first correct solution \cite{CS00}. It was essentially mentioned in 1955 from a letter written by John Nash to the United States National Security Agency \cite{AS17}. However, the precise statement of the $P=NP$ problem was introduced in 1971 by Stephen Cook in a seminal paper \cite{CS00}. In 2012, a poll of 151 researchers showed that 126 (83\%) believed the answer to be no, 12 (9\%) believed the answer is yes, 5 (3\%) believed the question may be independent of the currently accepted axioms and therefore impossible to prove or disprove, 8 (5\%) said either do not know or do not care or don't want the answer to be yes nor the problem to be resolved \cite{GA12}. It is fully expected that $P \neq NP$ \cite{Pap03}. Indeed, if $P = NP$ then there are stunning practical consequences \cite{Pap03}. For that reason, $P = NP$ is considered as a very unlikely event \cite{Pap03}. Certainly, $P$ versus $NP$ is one of the greatest open problems in science and a correct solution for this incognita will have a great impact not only in computer science, but for many other fields as well \cite{AS17}. Whether $P = NP$ or not is still a controversial and unsolved problem \cite{AS17}. In this work, we show some results that might be helpful in facing one of the most important open problems in computer science.
+
+\section{Preliminaries}
+
+In 1936, Turing developed his theoretical computational model \cite{MS06}. The deterministic and nondeterministic Turing machines have become in two of the most important definitions related to this theoretical model for computation \cite{MS06}. A deterministic Turing machine has only one next action for each step defined in its program or transition function \cite{MS06}. A nondeterministic Turing machine could contain more than one action defined for each step of its program, where this one is no longer a function, but a relation \cite{MS06}.
+
+Let $\Sigma$ be a finite alphabet with at least two elements, and let $\Sigma^{*}$ be the set of finite strings over $\Sigma$ \cite{AB09}. A Turing machine $M$ has an associated input alphabet $\Sigma$ \cite{AB09}. For each string $w$ in $\Sigma^{*}$ there is a computation associated with $M$ on input $w$ \cite{AB09}. We say that $M$ accepts $w$ if this computation terminates in the accepting state, that is $M(w)=1$ (when $M$ outputs 1 on the input $w$) \cite{AB09}. Note that $M$ fails to accept $w$ either if this computation ends in the rejecting state, that is $M(w)=0$, or if the computation fails to terminate, or the computation ends in the halting state with some output, that is $M(w)=y$ (when $M$ outputs the string $y$ on the input $w$) \cite{AB09}.
+
+Another relevant advance in the last century has been the definition of a complexity class. A language over an alphabet is any set of strings made up of symbols from that alphabet \cite{CLRS01}. A complexity class is a set of problems, which are represented as a language, grouped by measures such as the running time, memory, etc \cite{CLRS01}. The language accepted by a Turing machine $M$, denoted $L(M)$, has an associated alphabet $\Sigma$ and is defined by:
+\[L(M) = \{w \in \Sigma^{*}: M(w)=1 \}.\]
+We denote by $t_{M}(w)$ the number of steps in the computation of $M$ on input $w$ \cite{AB09}. For $n \in \mathbb{N}$ we denote by $T_{M}(n)$ the worst case run time of $M$; that is:
+\[T_{M}(n) = max\{t_{M}(w): w \in \Sigma^{n} \}\]
+where $\Sigma^{n}$ is the set of all strings over $\Sigma$ of length $n$ \cite{AB09}. We say that $M$ runs in polynomial time if there is a constant $k$ such that for all $n$, $T_{M}(n) \leq n^{k} + k$ \cite{AB09}. In other words, this means the language $L(M)$ can be decided by the Turing machine $M$ in polynomial time. Therefore, $P$ is the complexity class of languages that can be decided by deterministic Turing machines in polynomial time \cite{CLRS01}. A verifier for a language $L_{1}$ is a deterministic Turing machine $M$, where:
+\[L_{1} = \{w: M(w, c) = 1 \textit{ for some string } c\}.\]
+We measure the time of a verifier only in terms of the length of $w$, so a polynomial time verifier runs in polynomial time in the length of $w$ \cite{AB09}. A verifier uses additional information, represented by the symbol $c$, to verify that a string $w$ is a member of $L_{1}$. This information is called certificate. $NP$ is the complexity class of languages defined by polynomial time verifiers \cite{Pap03}.
+
+\begin{lemma}
+\label{verifier}
+Given a language $L_{1} \in P$, a language $L_{2}$ is in $NP$ if there is a deterministic Turing machine $M$, where:
+\[L_{2} = \{w: M(w, c) = y \textit{ for some string } c \textit{ such that } y \in L_{1}\}\]
+and $M$ runs in polynomial time in the length of $w$. In this way, $NP$ is the complexity class of languages defined by polynomial time verifiers $M$ such that when the input is an element of the language with its certificate, then $M$ outputs a string which belongs to a single language in $P$.
+\end{lemma}
+
+\begin{proof}
+If $L_{1}$ can be decided by the Turing machine $M'$ in polynomial time, then the deterministic Turing machine $M''(w, c) = M'(M(w, c))$ will output 1 when $w \in L_{2}$. Consequently, $M''$ is a polynomial time verifier of $L_{2}$ and thus, $L_{2}$ is in $NP$.
+\end{proof}
+
+\section{Hypothesis}
+
+A function $f : \Sigma^{*} \rightarrow \Sigma^{*}$ is a polynomial time computable function if some deterministic Turing machine $M$, on every input $w$, halts in polynomial time with just $f(w)$ on its tape \cite{MS06}. Let $\{0, 1\}^{*}$ be the infinite set of binary strings, we say that a language $L_{1} \subseteq \{0, 1\}^{*}$ is polynomial time reducible to a language $L_{2} \subseteq \{0, 1\}^{*}$, written $L_{1} \leq_{p} L_{2}$, if there is a polynomial time computable function $f : \{0, 1\}^{*} \rightarrow \{0, 1\}^{*}$ such that for all $x \in \{0, 1\}^{*}$:
+\[x \in L_{1} \textit{ if and only if } f(x) \in L_{2}.\]
+An important complexity class is $\textit{NP--complete}$ \cite{OG10}. A language $L_{1} \subseteq \{0, 1\}^{*}$ is $\textit{NP--complete}$ if:
+
+\begin{itemize}
+\item $L_{1} \in NP$, and
+\item $L' \leq_{p} L_{1}$ for every $L' \in NP$.
+\end{itemize}
+
+If $L_{1}$ is a language such that $L' \leq_{p} L_{1}$ for some $L' \in \textit{NP--complete}$, then $L_{1}$ is $\textit{NP--hard}$ \cite{CLRS01}. Moreover, if $L_{1} \in NP$, then $L_{1} \in \textit{NP--complete}$ \cite{CLRS01}. A principal $\textit{NP--complete}$ problem is $SAT$ \cite{GJ79}. An instance of $SAT$ is a Boolean formula $\phi$ which is composed of:
+
+\begin{enumerate}
+\item Boolean variables: $x_{1}, x_{2},\ldots, x_{n}$;
+\item Boolean connectives: Any Boolean function with one or two inputs and one output, such as $\wedge$(AND), $\vee$(OR), $\rightharpoondown$(NOT), $\Rightarrow$(implication), $\Leftrightarrow$(if and only if);
+\item and parentheses.
+\end{enumerate}
+
+A truth assignment for a Boolean formula $\phi$ is a set of values for the variables in $\phi$. A satisfying truth assignment is a truth assignment that causes $\phi$ to be evaluated as true. A formula with a satisfying truth assignment is a satisfiable formula. The problem $SAT$ asks whether a given Boolean formula is satisfiable \cite{GJ79}. We define a $CNF$ Boolean formula using the following terms:
+
+A literal in a Boolean formula is an occurrence of a variable or its negation \cite{CLRS01}. A Boolean formula is in conjunctive normal form, or $CNF$, if it is expressed as an AND of clauses, each of which is the OR of one or more literals \cite{CLRS01}. A Boolean formula is in 3-conjunctive normal form or $3CNF$, if each clause has exactly three distinct literals \cite{CLRS01}.
+
+For example, the Boolean formula:
+\[(x_{1} \vee \rightharpoondown x_{1} \vee \rightharpoondown x_{2}) \wedge (x_{3} \vee x_{2} \vee x_{4}) \wedge (\rightharpoondown x_{1} \vee \rightharpoondown x_{3} \vee \rightharpoondown x_{4})\]
+is in $3CNF$. The first of its three clauses is $(x_{1} \vee \rightharpoondown x_{1} \vee \rightharpoondown x_{2})$, which contains the three literals $x_{1}$, $\rightharpoondown x_{1}$, and $\rightharpoondown x_{2}$. Another relevant $\textit{NP--complete}$ language is $3CNF$ satisfiability, or $3SAT$ \cite{CLRS01}. In $3SAT$, it is asked whether a given Boolean formula $\phi$ in $3CNF$ is satisfiable.
+
+A logarithmic space Turing machine has a read-only input tape, a write-only output tape, and read/write work tapes \cite{MS06}. The work tapes may contain at most $O(\log n)$ symbols \cite{MS06}. In computational complexity theory, $L$ is the complexity class containing those decision problems that can be decided by a deterministic logarithmic space Turing machine \cite{Pap03}. $NL$ is the complexity class containing the decision problems that can be decided by a nondeterministic logarithmic space Turing machine \cite{Pap03}.
+
+A logarithmic space transducer is a Turing machine with a read-only input tape, a write-only output tape, and read/write work tapes \cite{MS06}. The work tapes must contain at most $O(\log n)$ symbols \cite{MS06}. A logarithmic space transducer $M$ computes a function $f : \Sigma^{*} \rightarrow \Sigma^{*}$, where $f(w)$ is the string remaining on the output tape after $M$ halts when it is started with $w$ on its input tape \cite{MS06}. We call $f$ a logarithmic space computable function \cite{MS06}. We say that a language $L_{1} \subseteq \{0, 1\}^{*}$ is logarithmic space reducible to a language $L_{2} \subseteq \{0, 1\}^{*}$, written $L_{1} \leq_{l} L_{2}$, if there exists a logarithmic space computable function $f : \{0, 1\}^{*} \rightarrow \{0, 1\}^{*}$ such that for all $x \in \{0, 1\}^{*}$,
+\[x \in L_{1} \textit{ if and only if } f(x) \in L_{2}.\]
+The logarithmic space reduction is frequently used for $L$ and $NL$ \cite{Pap03}. A Boolean formula is in 2-conjunctive normal form, or $2CNF$, if it is in $CNF$ and each clause has exactly two distinct literals. There is a problem called $2SAT$, where we asked whether a given Boolean formula $\phi$ in $2CNF$ is satisfiable. $2SAT$ is complete for $NL$ \cite{Pap03}. Another special case is the class of problems where each clause contains $XOR$ (i.e. exclusive or) rather than (plain) $OR$ operators. This is in $P$, since an $\textit{XOR SAT}$ formula can also be viewed as a system of linear equations mod $2$, and can be solved in cubic time by Gaussian elimination \cite{MM11}. We denote the $XOR$ function as $\oplus$. The $\textit{XOR 2SAT}$ problem will be equivalent to $\textit{XOR SAT}$, but the clauses in the formula have exactly two distinct literals. $\textit{XOR 2SAT}$ is in $L$ \cite{AR00}, \cite{RM08}.
+
+We can give a certificate-based definition for $NL$ \cite{AB09}. The certificate-based definition of $NL$ assumes that a logarithmic space Turing machine has another separated read-only tape \cite{AB09}. On each step of the machine the machine's head on that tape can either stay in place or move to the right \cite{AB09}. In particular, it cannot reread any bit to the left of where the head currently is \cite{AB09}. For that reason this kind of special tape is called ``read once" \cite{AB09}.
+
+\begin{definition}
+A language $L_{1}$ is in $NL$ if there exists a deterministic logarithmic space Turing machine $M$ with an additional special read-once input tape polynomial $p: \mathbb{N} \rightarrow \mathbb{N}$ such that for every $x \in \{0, 1\}^{*}$,
+\[x \in L_{1} \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)} \textit{ such that } M(x, u) = 1 \]
+where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its input tape and $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read/write tapes for every input $x$ where $|\ldots|$ is the bit-length function \cite{AB09}. $M$ is called a logarithmic space verifier \cite{AB09}.
+\end{definition}
+
+We state the following Hypothesis:
+
+\begin{hypothesis}
+\label{hypothesis}
+Given a language $L_{1} \in L$, there is a language $L_{2}$ in $\textit{NP--complete}$ with a deterministic Turing machine $M$, where:
+\[L_{2} = \{w: M(w, u) = y \textit{ for some string } u \textit{ such that } y \in L_{1}\}\]
+when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$. In this way, there is an $\textit{NP--complete}$ language defined by a logarithmic space verifier $M$ such that when the input is an element of the language with its certificate, then $M$ outputs a string which belongs to a single language in $L$.
+\end{hypothesis}
+
+\section{Results}
+
+We show a previous known $\textit{NP--complete}$ problem:
+
+\begin{definition}
+$\textbf{MONOTONE NAE 3SAT}$
+
+INSTANCE: A Boolean formula $\phi$ in $3CNF$ such that each clause has no negation variables.
+
+QUESTION: Is there a truth assignment for $\phi$ such that each clause has at least one true literal and at least one false literal?
+
+REMARKS: This is equivalent to the special case of the $\textit{NP--complete}$ problem known as $\textit{SET SPLITTING}$ when the sets in the input have exactly three elements and therefore, $\textit{MONOTONE NAE 3SAT} \in \textit{NP--complete}$ \cite{GJ79}.
+\end{definition}
+
+We define a new problem:
+
+\begin{definition}
+$\textbf{MINIMUM EXCLUSIVE-OR 2-SATISFIABILITY}$
+
+INSTANCE: A positive integer $K$ and a Boolean formula $\phi$ that is an instance of $\textit{XOR 2SAT}$ such that each clause has no negation variables.
+
+QUESTION: Is there a truth assignment in $\phi$ such that exactly $K$ clauses are unsatisfiable?
+
+REMARKS: We denote this problem as $MIN\oplus2SAT$.
+\end{definition}
+
+
+\begin{theorem}
+\label{completeness}
+$MIN\oplus2SAT \in \textit{NP--complete}$.
+\end{theorem}
+
+\begin{proof}
+It is trivial to see $MIN\oplus2SAT \in NP$ \cite{Pap03}. Given a Boolean formula $\phi$ in $3CNF$ with $n$ variables and $m$ clauses such that each clause has no negation variables, we create three new variables $a_{c_{i}}$, $b_{c_{i}}$ and $d_{c_{i}}$ for each clause $c_{i} = (x \vee y \vee z)$ in $\phi$, where $x$, $y$ and $z$ are positive literals, in the following formula:
+\[P_{i} = (a_{c_{i}} \oplus b_{c_{i}}) \wedge (b_{c_{i}} \oplus d_{c_{i}}) \wedge (a_{c_{i}} \oplus d_{c_{i}}) \wedge (x \oplus a_{c_{i}}) \wedge (y \oplus b_{c_{i}}) \wedge (z \oplus d_{c_{i}}).\]
+We can see $P_{i}$ has exactly one unsatisfiable clause for some truth assignment if and only if at least one member of $\{x,y,z\}$ is true and at least one member of $\{x,y,z\}$ is false for the same truth assignment. Hence, we can create the Boolean formula $\psi$ as the conjunction of the $P_{i}$ formulas for every clause $c_{i}$ in $\phi$, such that $\psi = P_{1} \wedge \ldots \wedge P_{m}$. Finally, we obtain that
+\[\phi \in \textit{MONOTONE NAE 3SAT} \textit{ if and only if } (\psi, m) \in MIN\oplus2SAT.\]
+Consequently, we prove $\textit{MONOTONE NAE 3SAT} \leq_{p} MIN\oplus2SAT$ where we already know the language $\textit{MONOTONE NAE 3SAT} \in \textit{NP--complete}$ \cite{GJ79}. To sum up, we show $MIN\oplus2SAT \in \textit{NP--hard}$ and $MIN\oplus2SAT \in NP$ and thus, $MIN\oplus2SAT \in \textit{NP--complete}$.
+\end{proof}
+
+\begin{theorem}
+\label{proof}
+There is a deterministic Turing machine $M$, where:
+\[MIN\oplus2SAT = \{w: M(w, u) = y \textit{ for some string } u \textit{ such that } y \in \textit{XOR 2SAT}\}\]
+when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$.
+\end{theorem}
+
+\begin{proof}
+Given a valid instance $(\psi, K)$ for $MIN\oplus2SAT$ when $\psi$ has $m$ clauses, we can create a certificate array $A$ which contains $K$ different natural numbers in ascending order which represents the indexes of the clauses in $\psi$ that we are going to remove from the instance. We read at once the elements of the array $A$ and we reject whether this is not a valid certificate: That is when the numbers are not sorted in ascending order, or the array $A$ does not contain exactly $K$ elements, or the array $A$ contains a number that is not between $1$ and $m$. While we read the elements of the array $A$, we remove the clauses from the instance $(\psi, K)$ for $MIN\oplus2SAT$ just creating another instance $\phi$ for $\textit{XOR 2SAT}$ where the Boolean formula $\phi$ does not contain the $K$ different indexed clauses $\psi$ represented by the numbers in $A$. Therefore, we obtain that:
+\[(\psi, K) \in MIN\oplus2SAT \textit{ if and only if } \phi \in \textit{XOR 2SAT}.\]
+Furthermore, we can make this verification in logarithmic space such that the array $A$ is placed on the special read-once tape, because we read at once the elements in the array $A$ and we assume the clauses in the input $\psi$ are indexed from left to right. Hence, we only need to iterate from the elements of the array $A$ to verify whether the array is a valid certificate and also remove the $K$ different clauses from the Boolean formula $\psi$ when we write the final clauses to the output. This logarithmic space verification will be the Algorithm \ref{2-algorithm}. We assume whether a value does not exist in the array $A$ into the cell of some position $i$ when $A[i] = undefined$. In addition, we reject immediately when the following comparisons
+\[A[i] \leq max \vee A[i] < 1 \vee A[i] > m\]
+hold at least into one single binary digit. Note, in the loop $j$ from $min$ to $max - 1$, we do not output any clause when $max - 1 < min$.
+
+\begin{algorithm}
+\caption{Logarithmic space verifier}\label{2-algorithm}
+\begin{algorithmic}[1]
+\Comment{A valid instance for $MIN\oplus2SAT$ with its certificate}
+\Procedure{$\textit{VERIFIER}$}{$(\psi, K), A$}
+\Comment{Initialize minimum and maximum values}
+\State $min \gets 1$
+\State $max \gets 0$
+\Comment{Iterate for the elements of the certificate array $A$}
+\For{$i$}{$1$}{$K + 1$}
+\If{$i = K+1$}
+\Comment{There exists a $K+1$ element in the array}
+\If{$A[i] \neq undefined$}
+\Comment{Reject the certificate}
+\State \textbf{return} $0$
+\EndIf
+\Comment{$m$ is the number of clauses in $\psi$}
+\State $max \gets m + 1$
+\ElsIf{$A[i] = undefined \vee A[i] \leq max \vee A[i] < 1 \vee A[i] > m$}
+\Comment{Reject the certificate}
+\State \textbf{return} $0$
+\Else
+\State $max \gets A[i]$
+\EndIf
+\Comment{Iterate for the clauses of the Boolean formula $\psi$}
+\For{$j$}{$min$}{$max - 1$}
+\Comment{Output the indexed $j$ clause in $\psi$}
+\State \textbf{output} $``\wedge c_{j}"$
+\EndFor
+\State $min \gets max + 1$
+\EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+\end{proof}
+
+\begin{theorem}
+The Hypothesis \ref{hypothesis} is true.
+\end{theorem}
+
+\begin{proof}
+This is a consequence of Theorems \ref{completeness} and \ref{proof}.
+\end{proof}
+
+\section{Materials and Methods}
+
+This work is implemented into a GitHub Project programmed in Scala \cite{FV19}. In this GitHub Project, we use the Assertion on the properties of the instances of each problem and the Unit Test for checking the correctness of every reduction \cite{FV19}. We need to install JDK 8 in order to test the Scala Project \cite{OD16}. In addition, we need to install SBT to run the unit test (we could run the unit test with the $\textbf{sbt test}$ command) \cite{OD16}.
+
+\bibliography{manuscript}
+
+
+\end{document}

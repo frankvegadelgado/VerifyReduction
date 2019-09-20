@@ -7,9 +7,7 @@ import frank.sat._
   */
 class ReductionSat$Test extends FlatSpec with Common {
   private val reducer = ReductionKnownNPComplete
-  private val composer = ReductionNewNPComplete
   private val verifier = ReductionWithVerification
-  private val logarithmic = ReductionInLogarithmicSpace
   behavior of "ReductionSat$"
 
   val formula1 = Formula(Clause(1, 2, 3))
@@ -26,21 +24,11 @@ class ReductionSat$Test extends FlatSpec with Common {
 
   }
 
-  it should "compose reduce 3CNF formulas" in {
-
-    composeReduceSat(reducer, composer, formula1)
-    composeReduceSat(reducer, composer, formula2)
-    composeReduceSat(reducer, composer, formula3)
-    composeReduceSat(reducer, composer, formula4)
-
-
-  }
-
   it should "verify 3CNF formulas" in {
 
     val array = Array(4, 7, 10)
-    verifySat(logarithmic, verifier, reducer, composer, formula3, array)
-    verifySat(logarithmic, verifier, reducer, composer, formula4, array)
+    verifySat(verifier, reducer, formula3, array)
+    verifySat(verifier, reducer, formula4, array)
 
 
   }
