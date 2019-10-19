@@ -26,9 +26,8 @@ class ReductionSat$Test extends FlatSpec with Common {
 
   it should "verify 3CNF formulas" in {
 
-    val array = Array(4, 7, 10)
-    verifySat(verifier, reducer, formula3, array)
-    verifySat(verifier, reducer, formula4, array)
+    verifySat(verifier, reducer, formula3, Array(1, 9, 15))
+    verifySat(verifier, reducer, formula4, Array(3, 8, 14))
 
 
   }

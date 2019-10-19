@@ -1,7 +1,7 @@
 package frank.sat.solvers
 
-import frank.sat.Formula
 
+import frank.sat._
 /**
   * A partially solved formula.
   */

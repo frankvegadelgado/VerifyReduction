@@ -9,11 +9,6 @@ class FormulaTest extends FlatSpec with Matchers {
   private val satFormula = Formula(Clause(1), Clause(2), Clause(3, 4))
   private val unsatFormula = Formula(Clause(1), Clause(-1))
 
-  it should "check if the formula is Monotone" in {
-    satFormula.isMonotoneSat shouldBe true
-    unsatFormula.isMonotoneSat shouldBe false
-  }
-
   it should "check if the formula is K-SAT" in {
     satFormula.isKSat(3) shouldBe true
     satFormula.isKSat(2) shouldBe true

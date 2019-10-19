@@ -1,6 +1,6 @@
 package frank.sat.parsers
 
-import frank.sat._
+import frank.sat.{Satisfiable, Unknown, Unsatisfiable}
 import org.scalatest.{FlatSpec, Matchers}
 
 class DimacsResult$Test extends FlatSpec with Matchers {
