@@ -15,7 +15,7 @@ P versus NP is considered as one of the most important open problems in computer
 
 In previous years there has been great interest in the verification or checking of computations. Interactive proofs introduced by Goldwasser, Micali and Rackoff and Babi can be viewed as a model of the verification process. Dwork and Stockmeyer and Condon have studied interactive proofs where the verifier is a space bounded computation instead of the original model where the verifer is a time bounded computation. In addition, Blum and Kannan has studied another model where the goal is to check a computation based solely on the final answer. Besides, a probabilistic logarithmic space verifiers have been shown for NP such that these are based on a technique of Lipton. In this project, we show some results about the logarithmic space verifiers applied to the class NP which solve one of the most important open problems in computer science, that is P versus NP.
 
-# Our Algorithm
+# Our Proof
 
 We can define an NP problem as
 
@@ -27,7 +27,7 @@ L2 = {w: M'(w, c) = “yes”} (“yes” is the acceptance state)
 
 where the computation of M'(w, c) is equal to N(M(w, c)) when N is the Turing machine which accepts L1 in polynomial time. On the other hand, the verifier for a language in NL (nondeterministic logarithmic space class) has as premise that the certificate c is placed in a special tape that is read only and read at once (that means we cannot read to the left).
 
-In the paper was proved that we can define a NP-complete problem as
+In this project was proved that we can define a NP-complete problem as
 
 L2 = {w: M(w, c) = y where y is in L1} (y is the output in the halting state)
 
