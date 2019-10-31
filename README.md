@@ -17,7 +17,7 @@ https://www.academia.edu/39973754/Logarithmic_Space_Verifiers_on_NP-complete
 
 # Our Proof
 
-- We can define an NP problem as
+We can define an NP problem as
 
 L2 = {w: M(w, c) = y where y is in L1} (y is the output in the halting state)
 
@@ -32,12 +32,6 @@ In this project was proved that we can define a NP-complete problem as
 L2 = {w: M(w, c) = y where y is in L1} (y is the output in the halting state)
 
 when L1 is a language in L (deterministic logarithmic space class), M is a deterministic Turing machine that runs in logarithmic space in the length of w and c (the certificate) is polynomially bounded by w such that c is placed in the special tape in M that is read only and read at once.
-
-Since  the logarithmic space composition reduction can be done in logarithmic space, then this might be an evidence of the NP-complete L2 is in NL and thus in P since NL is contained in P. We can obtain the existence of a logarithmic space verifier M’ such that the NP-complete problem L2 is defined as
-
-L2 = {w: M'(w, c) = “yes”} (“yes” is the acceptance state)
-
-where the computation of M'(w, c) is equal to N(M(w, c)) when N is the Turing machine which accepts L1 in logarithmic space. 
 
 We can simulate the computation M(w, u) = y by a nondeterministic logarithmic space Turing machine N, such that N(w) = y since we can read the certificate string u within the read-once tape by a work tape in a nondeterministic logarithmic space generation of symbols contained in u. Certainly, we can simulate the reading of one symbol from the string u into the read-once tape just nondeterministically generating the same symbol in the work tapes using a logarithmic space. 
 
