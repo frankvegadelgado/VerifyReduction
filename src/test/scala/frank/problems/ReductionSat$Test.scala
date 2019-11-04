@@ -14,13 +14,14 @@ class ReductionSat$Test extends FlatSpec with Common {
   val formula2 = Formula(Clause(1, 2, 3), Clause(2, 5, 6))
   val formula3 = Formula(Clause(1, 2, 3), Clause(2, 5, 6), Clause(1, 3, 4))
   val formula4 = Formula(Clause(1, 2, 3), Clause(2, 5, 6), Clause(1, 3, 5))
+  val formula5 = Formula(Clause(-1, -2, -3))
 
   it should "reduce 3CNF formulas" in {
     reduceSat(reducer, formula1)
     reduceSat(reducer, formula2)
     reduceSat(reducer, formula3)
     reduceSat(reducer, formula4)
-
+    reduceSat(reducer, formula5)
 
   }
 
@@ -28,6 +29,7 @@ class ReductionSat$Test extends FlatSpec with Common {
 
     verifySat(verifier, reducer, formula3, Array(1, 9, 15))
     verifySat(verifier, reducer, formula4, Array(3, 8, 14))
+    verifySat(verifier, reducer, formula5, Array(1))
 
 
   }

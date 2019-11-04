@@ -13,8 +13,8 @@ trait Reduction[U<:Instance, V<:Instance, C] {
 /**
   * Theorem 6 in paper https://www.preprints.org/manuscript/201908.0037/v1
   */
-object ReductionKnownNPComplete extends Reduction[MonotoneNaeSat, MinXor2Sat, Any]{
-  override def reduction(input: MonotoneNaeSat, certificate: Option[Any] = None): MinXor2Sat = {
+object ReductionKnownNPComplete extends Reduction[NaeSat, MinXor2Sat, Any]{
+  override def reduction(input: NaeSat, certificate: Option[Any] = None): MinXor2Sat = {
 
     val clauses: Seq[List[Clause]] = for {(clause, index) <- input.formula.clauses.zipWithIndex
                                      variable = input.formula.variables.max + 3*index} yield {
@@ -33,8 +33,8 @@ object ReductionKnownNPComplete extends Reduction[MonotoneNaeSat, MinXor2Sat, An
 /**
   * Theorem 7 in paper https://www.preprints.org/manuscript/201908.0037/v1
   */
-object ReductionWithVerification extends Reduction[MinXor2Sat, MonotoneXor2Sat, Array[Int]]{
-  override def reduction(input: MinXor2Sat, certificate: Option[Array[Int]] = None): MonotoneXor2Sat = {
+object ReductionWithVerification extends Reduction[MinXor2Sat, Xor2Sat, Array[Int]]{
+  override def reduction(input: MinXor2Sat, certificate: Option[Array[Int]] = None): Xor2Sat = {
     if (certificate.isEmpty) throw new IllegalArgumentException("The certificate is not valid")
     val array: Array[Int] = certificate.get
     // Output the value of m
@@ -58,6 +58,6 @@ object ReductionWithVerification extends Reduction[MinXor2Sat, MonotoneXor2Sat, 
       }
       min = max + 1
     }
-    MonotoneXor2Sat(Formula(clauses: _*))
+    Xor2Sat(Formula(clauses: _*))
   }
 }
