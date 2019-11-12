@@ -193,7 +193,7 @@ Let $\textit{1TAPE}[T(n)]$ denote the family of languages accepted by determinis
 \label{closed}
 If $T(n)$ is such that
 \[\lim_{n\to\infty} \frac{T(n)}{n} = 0\]
-then $\textit{1TAPE}[T(n)]$ is closed under deterministic two-way logarithmic space reduction.
+and is not a constant, then $\textit{1TAPE}[T(n)]$ is closed under deterministic two-way logarithmic space reduction.
 \end{theorem}
 
 \begin{proof}
@@ -212,7 +212,7 @@ $1L \neq 1NL$ under deterministic two-way logarithmic space reduction.
 \begin{proof}
 Hartmanis and Mahaney have shown that $1NL \varsubsetneq \textit{1TAPE}[T(n)]$ when
 \[\lim_{n\to\infty} \frac{T(n)}{n} = 0\]
-in their paper \cite{HM81}. Consequently, this is a consequence of Theorem \ref{closed}, because $1NL$ is also closed under deterministic two-way logarithmic space reduction.
+in their paper \cite{HM81}. Consequently, this is a result of Theorem \ref{closed}, because $1NL$ is also closed under deterministic two-way logarithmic space reduction.
 \end{proof}
 
 \begin{theorem}
