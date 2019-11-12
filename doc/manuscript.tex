@@ -79,11 +79,11 @@ P versus NP is considered as one of the most important open problems in computer
 
 In previous years there has been great interest in the verification or checking of computations \cite{LIP90}. Interactive proofs introduced by Goldwasser, Micali and Rackoff and Babi can be viewed as a model of the verification process \cite{LIP90}. Dwork and Stockmeyer and Condon have studied interactive proofs where the verifier is a space bounded computation instead of the original model where the verifer is a time bounded computation \cite{LIP90}. In addition, Blum and Kannan has studied another model where the goal is to check a computation based solely on the final answer \cite{LIP90}. More about probabilistic logarithmic space verifiers have been shown on a technique of Lipton \cite{LIP90}. In this work, we show some results about the logarithmic space verifiers applied to the class $NP$ which solve one of the most important open problems in computer science, that is $P$ versus $NP$.
 
-\section{Motivation}
-
 The $P$ versus $NP$ problem is a major unsolved problem in computer science \cite{CS00}. This is considered by many to be the most important open problem in the field \cite{CS00}. It is one of the seven Millennium Prize Problems selected by the Clay Mathematics Institute to carry a US\$1,000,000 prize for the first correct solution \cite{CS00}. It was essentially mentioned in 1955 from a letter written by John Nash to the United States National Security Agency \cite{AS17}. However, the precise statement of the $P=NP$ problem was introduced in 1971 by Stephen Cook in a seminal paper \cite{CS00}. In 2012, a poll of 151 researchers showed that 126 (83\%) believed the answer to be no, 12 (9\%) believed the answer is yes, 5 (3\%) believed the question may be independent of the currently accepted axioms and therefore impossible to prove or disprove, 8 (5\%) said either do not know or do not care or don't want the answer to be yes nor the problem to be resolved \cite{GA12}. It is fully expected that $P \neq NP$ \cite{Pap03}. Indeed, if $P = NP$ then there are stunning practical consequences \cite{Pap03}. For that reason, $P = NP$ is considered as a very unlikely event \cite{Pap03}. Certainly, $P$ versus $NP$ is one of the greatest open problems in science and a correct solution for this incognita will have a great impact not only in computer science, but for many other fields as well \cite{AS17}. Whether $P = NP$ or not is still a controversial and unsolved problem \cite{AS17}. We show some results that prove this outstanding problem with the unexpected solution of $P = NP$.
 
-\section{Preliminaries}
+\section{Materials and Methods}
+
+\subsection{Preliminaries}
 
 In 1936, Turing developed his theoretical computational model \cite{MS06}. The deterministic and nondeterministic Turing machines have become in two of the most important definitions related to this theoretical model for computation \cite{MS06}. A deterministic Turing machine has only one next action for each step defined in its program or transition function \cite{MS06}. A nondeterministic Turing machine could contain more than one action defined for each step of its program, where this one is no longer a function, but a relation \cite{MS06}.
 
@@ -108,7 +108,7 @@ and $M$ runs in polynomial time in the length of $w$. In this way, $NP$ is the c
 If $L_{1}$ can be decided by the Turing machine $M'$ in polynomial time, then the deterministic Turing machine $M''(w, c) = M'(M(w, c))$ will output 1 when $w \in L_{2}$. Consequently, $M''$ is a polynomial time verifier of $L_{2}$ and thus, $L_{2}$ is in $NP$.
 \end{proof}
 
-\section{Hypothesis}
+\subsection{Hypothesis}
 
 A function $f : \Sigma^{*} \rightarrow \Sigma^{*}$ is a polynomial time computable function if some deterministic Turing machine $M$, on every input $w$, halts in polynomial time with just $f(w)$ on its tape \cite{MS06}. Let $\{0, 1\}^{*}$ be the infinite set of binary strings, we say that a language $L_{1} \subseteq \{0, 1\}^{*}$ is polynomial time reducible to a language $L_{2} \subseteq \{0, 1\}^{*}$, written $L_{1} \leq_{p} L_{2}$, if there is a polynomial time computable function $f : \{0, 1\}^{*} \rightarrow \{0, 1\}^{*}$ such that for all $x \in \{0, 1\}^{*}$:
 \[x \in L_{1} \textit{ if and only if } f(x) \in L_{2}.\]
@@ -139,7 +139,7 @@ A logarithmic space Turing machine has a read-only input tape, a write-only outp
 
 A logarithmic space transducer is a Turing machine with a read-only input tape, a write-only output tape, and read/write work tapes \cite{MS06}. The work tapes must contain at most $O(\log n)$ symbols \cite{MS06}. A logarithmic space transducer $M$ computes a function $f : \Sigma^{*} \rightarrow \Sigma^{*}$, where $f(w)$ is the string remaining on the output tape after $M$ halts when it is started with $w$ on its input tape \cite{MS06}. We call $f$ a logarithmic space computable function \cite{MS06}. We say that a language $L_{1} \subseteq \{0, 1\}^{*}$ is logarithmic space reducible to a language $L_{2} \subseteq \{0, 1\}^{*}$, written $L_{1} \leq_{l} L_{2}$, if there exists a logarithmic space computable function $f : \{0, 1\}^{*} \rightarrow \{0, 1\}^{*}$ such that for all $x \in \{0, 1\}^{*}$,
 \[x \in L_{1} \textit{ if and only if } f(x) \in L_{2}.\]
-The logarithmic space reduction is frequently used for $L$ and $NL$ \cite{Pap03}. On the one hand, we call the deterministic logarithmic space reduction as $\textit{L-reduction}$. On the other hand, we call the nondeterministic logarithmic space reduction as $\textit{NL-reduction}$. 
+The logarithmic space reduction is frequently used for $L$ and $NL$ \cite{Pap03}. On the one hand, we call the deterministic logarithmic space reduction as $\textit{L--reduction}$. On the other hand, we call the nondeterministic logarithmic space reduction as $\textit{NL--reduction}$.
 
 A Boolean formula is in 2-conjunctive normal form, or $2CNF$, if it is in $CNF$ and each clause has exactly two distinct literals. There is a problem called $2SAT$, where we asked whether a given Boolean formula $\phi$ in $2CNF$ is satisfiable. $2SAT$ is complete for $NL$ \cite{Pap03}. Another special case is the class of problems where each clause contains $XOR$ (i.e. exclusive or) rather than (plain) $OR$ operators. This is in $P$, since an $\textit{XOR SAT}$ formula can also be viewed as a system of linear equations mod $2$, and can be solved in cubic time by Gaussian elimination \cite{MM11}. We denote the $XOR$ function as $\oplus$. The $\textit{XOR 2SAT}$ problem will be equivalent to $\textit{XOR SAT}$, but the clauses in the formula have exactly two distinct literals. $\textit{XOR 2SAT}$ is in $L$ \cite{AR00}, \cite{RM08}.
 
@@ -160,7 +160,7 @@ Given a language $L_{1} \in L$, there is a language $L_{2}$ in $\textit{NP--comp
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$. In this way, there is an $\textit{NP--complete}$ language defined by a logarithmic space verifier $M$ such that when the input is an element of the language with its certificate, then $M$ outputs a string which belongs to a single language in $L$.
 \end{hypothesis}
 
-\section{Consequences}
+\subsection{Consequences}
 
 From the early days of automata and complexity  theory,  two  different  models  of  Turing  machines  are  considered, the offline and online machines \cite{KU15}. Each model has a read-only input tape and some work tapes \cite{KU15}. The offline machines may read their input two-way while the online machines are not allowed to move the input head to the left \cite{KU15}. In the terminology of the (generalized) Turing machine models are called two-way and one-way Turing machines, respectively \cite{KU15}.
 
@@ -179,11 +179,37 @@ If we suppose that $L \subset 1NL$, then we can accept the elements of the langu
 Hartmanis and Mahaney have also shown with their result that if $1NL \subseteq L$ or even $1NL \subset L$, then $L=NL$, because they proved there is a complete problem for both $1NL$ and $NL$ at the same time \cite{HM81}. If this way, if $L \neq NL$, then $L \subset 1NL$ by contraposition \cite{Pap03}. Since we already obtained that $P = NP$ under the assumption that $L \subset 1NL$, therefore if $L \neq NL$, then $P = NP$.
 \end{proof}
 
-Now, we define two classes defined under $\textit{L-reduction}$ and $\textit{NL-reduction}$, respectively.
+Now, we define two classes defined under $\textit{L--reduction}$ and $\textit{NL--reduction}$, respectively.
 
 \begin{definition}
 The class $2L$ contains those languages that are deterministic logarithmic space reduced to a language in $1L$. The class $2NL$ consists in those languages that are nondeterministic logarithmic space reduced to a language in $1NL$.
 \end{definition}
+
+Let $\textit{1TAPE}[T(n)]$ denote the family of languages accepted by deterministic one-way Turing machines with $T(n)$ work tape \cite{HM81}.
+
+\begin{theorem}
+\label{closed}
+If $T(n)$ is such that
+\[\lim_{n\to\infty} \frac{T(n)}{n} = 0\]
+then $\textit{1TAPE}[T(n)]$ is closed under deterministic two-way logarithmic space reduction.
+\end{theorem}
+
+\begin{proof}
+Suppose that $\textit{1TAPE}[T'(n)]$ is not closed under deterministic two-way logarithmic space reduction for some $T'(n)$ when
+\[\lim_{n\to\infty} \frac{T'(n)}{n} = 0.\] 
+Hence, the family of languages $\textit{1TAPE}[T'(n)]$ is two-way logarithmic space reduced to the another family of languages $\textit{1TAPE}[T'(n) - H(n)]$ where the deterministic two-way logarithmic space reduction consumes less than $H(n)$ in the work tapes. Consequently, for each instance of a language in $\textit{1TAPE}[T'(n)]$ of size $n$, then this could be equivalent to another instance of size with at most $k \times n$ symbols for some arbitrary number $k > 1$ which mostly depends from the original instance, that is the result of reading consecutively the symbols in the input tape in a sequential way. This means if during the deterministic two-way logarithmic space reduction the input head moves to the left or to the right, then this is a new symbol that appears contiguously to the right in the instance of size at most $k \times n$. However, we know in that instance of size at most $k \times n$, we can replace the deterministic two-way logarithmic space reduction by a deterministic one-way logarithmic space reduction that read contiguously from left-to-right. Therefore, the instance of size at most $k \times n$ could be decided by a deterministic one-way logarithmic space Turing machine that simulates the two-way logarithmic space reduction with less than $H(n)$ in the work tapes within the composition on the another deterministic one-way logarithmic space Turing machine which is used in $\textit{1TAPE}[T'(n) - H(n)]$ after the deterministic two-way logarithmic space reduction of the original language. In this way, we obtain that the family of languages of $\textit{1TAPE}[T'(n)]$ is contained into the family of languages $\textit{1TAPE}[T'(\frac{n}{k})]$ for some arbitrary number $k > 1$ under the assumption that $\textit{1TAPE}[T'(n)]$ is not closed under deterministic two-way logarithmic space reduction. As result, we obtain that $\textit{1TAPE}[T'(n)] = \textit{1TAPE}[T'(\frac{n}{k})]$ since we previously know that $\textit{1TAPE}[T'(\frac{n}{k})] \subseteq \textit{1TAPE}[T'(n)]$ and we show that $\textit{1TAPE}[T'(n)] \subseteq \textit{1TAPE}[T'(\frac{n}{k})]$ under our supposition. Since $T'(n)$ is not equal to $T'(\frac{n}{k})$ for some arbitrary number $k > 1$, then we obtain that necessarily $\textit{1TAPE}[T'(n)]$ should be closed under deterministic two-way logarithmic space reduction by the reductio ad absurdum logic rule \cite{FE16}. In general, we can assume the same result for every sparse function $T(n)$.
+\end{proof}
+
+\begin{theorem}
+\label{partially}
+$1L \neq 1NL$ under deterministic two-way logarithmic space reduction.
+\end{theorem}
+
+\begin{proof} 
+Hartmanis and Mahaney have shown that $1NL \varsubsetneq \textit{1TAPE}[T(n)]$ when 
+\[\lim_{n\to\infty} \frac{T(n)}{n} = 0\]
+in their paper \cite{HM81}. Consequently, this is a direct result of Theorem \ref{closed}.
+\end{proof}
 
 \begin{theorem}
 \label{negation}
@@ -191,16 +217,14 @@ $L \neq NL$.
 \end{theorem}
 
 \begin{proof}
- We obtain that $2L \subseteq L$ and $2NL \subseteq NL$ by the definition of $L$ and $NL$ under the $\textit{L-reduction}$ and $\textit{NL-reduction}$, respectively. Certainly, since the output string will be in $1L$ or $1NL$, then we do not need to reset the computation of the $\textit{L-reduction}$ or $\textit{NL-reduction}$ in order to be decided by a deterministic or nondeterministic logarithmic space Turing machine under logarithmic space composition, respectively.
+ We obtain that $2L \subseteq L$ and $2NL \subseteq NL$ by the definition of $L$ and $NL$ under the $\textit{L--reduction}$ and $\textit{NL--reduction}$, respectively. Certainly, since the output string will be in $1L$ or $1NL$, then we do not need to reset the computation of the $\textit{L--reduction}$ or $\textit{NL--reduction}$ in order to be decided by a deterministic or nondeterministic logarithmic space Turing machine under logarithmic space composition, respectively.
 
-On the one hand, every language in $L_{1} \in L$ which is decided by a deterministic logarithmic space Turing machine $M$ could be $\textit{L--reduced}$ to a language in $1L$. The reason is simple, because the Turing machine $M$ could output the sequence of symbols that is read continuously in the input tape during the whole computation in case of acceptance. Indeed, for every read symbol in the input tape in $M$, then this is written to the output tape in a sequential way. In this way, the output string could be accepted by a deterministic one-way logarithmic space Turing machine, that would be the same Turing machine $M$ where this one will always read on the input tape from left-to-right. Certainly, when $M$ tries to move the head of the input tape to the left into the output string, then this will move contiguously to the right. Consequently, $M$ in case of acceptance will output the strings that consist in a language in $1L$. Hence, we obtain that $L \subseteq 2L$. Since we already know that $2L \subseteq L$, then $L = 2L$.
+On the one hand, every language in $L_{1} \in L$ which is decided by a deterministic logarithmic space Turing machine $M$ could be $\textit{L--reduced}$ to a language in $1L$. The reason is simple, because the Turing machine $M$ could output the sequence of symbols that is read consecutively in the input tape during the whole computation in case of acceptance. Indeed, for every read symbol in the input tape in $M$, then this is written to the output tape in a sequential way. In this way, the output string could be accepted by a deterministic one-way logarithmic space Turing machine, that would be the same Turing machine $M$ where this one will always read on the input tape from left-to-right. Certainly, when $M$ tries to move the head of the input tape to the left into the output string, then this will move contiguously to the right. Consequently, $M$ in case of acceptance will output the strings that consist in a language in $1L$. Hence, we obtain that $L \subseteq 2L$. Since we already know that $2L \subseteq L$, then $L = 2L$.
 
-On the other hand, every language in $L_{2} \in NL$ which is decided by a nondeterministic logarithmic space Turing machine $N$ could be $\textit{NL--reduced}$ to a language in $1NL$. The reason is simple, because the Turing machine $N$ could output the sequence of symbols that is read continuously in the input tape during the whole computation in case of acceptance. Indeed, for every read symbol in the input tape in $N$, then this is written to the output tape in a sequential way. In this way, the output string could be accepted by a nondeterministic one-way logarithmic space Turing machine, that would be the same Turing machine $N$ where this one will always read on the input tape from left-to-right. Certainly, when $N$ tries to move the head of the input tape to the left into the output string, then this will move contiguously to the right. Consequently, $N$ in case of acceptance will output the strings that consist in a language in $1NL$. Hence, we obtain that $NL \subseteq 2NL$. Since we already know that $2NL \subseteq NL$, then $NL = 2NL$.
+On the other hand, every language in $L_{2} \in NL$ which is decided by a nondeterministic logarithmic space Turing machine $N$ could be $\textit{NL--reduced}$ to a language in $1NL$. The reason is simple, because the Turing machine $N$ could output the sequence of symbols that is read consecutively in the input tape during the whole computation in case of acceptance. Indeed, for every read symbol in the input tape in $N$, then this is written to the output tape in a sequential way. In this way, the output string could be accepted by a nondeterministic one-way logarithmic space Turing machine, that would be the same Turing machine $N$ where this one will always read on the input tape from left-to-right. Certainly, when $N$ tries to move the head of the input tape to the left into the output string, then this will move contiguously to the right. Consequently, $N$ in case of acceptance will output the strings that consist in a language in $1NL$. Hence, we obtain that $NL \subseteq 2NL$. Since we already know that $2NL \subseteq NL$, then $NL = 2NL$.
 
-In this way, if $L = NL$ then $2L = 2NL$. However, we know that $2L \neq 2NL$ because of $1L \neq 1NL$ \cite{HM81}. Therefore, we prove the complexity class $L$ is not equal to $NL$.
+In this way, if $L = NL$ then $2L = 2NL$. However, we know that $2L \neq 2NL$ because of $1L \neq 1NL$ under deterministic two-way logarithmic space reduction according to the Theorem \ref{partially}. Indeed, in case of $2L = 2NL$, then every language in $1NL$ is deterministic two-way logarithmic space reduced to a language in $1L$ and viceversa. Consequently, we prove the complexity class $L$ is not equal to $NL$.
 \end{proof}
-
-
 
 \begin{theorem}
 \label{argument}
@@ -210,6 +234,11 @@ If the Hypothesis \ref{hypothesis} is true, then $P = NP$.
 \begin{proof}
 This is a direct consequence of Theorems \ref{implication} and \ref{negation}.
 \end{proof}
+
+\subsection{Codes}
+
+This work is implemented into a Project programmed in Scala \cite{FV19}. We need to install JDK 8 in order to test the Scala Project \cite{OD16}. In addition, we need to install SBT to run the unit test (we could run the unit test with the $\textbf{sbt test}$ command) \cite{OD16}.
+
 
 \section{Results}
 
@@ -319,11 +348,7 @@ This is a direct consequence of Theorems \ref{argument} and \ref{result}.
 \end{proof}
 
 
-\section{Materials and Methods}
-
-This work is implemented into a Project programmed in Scala \cite{FV19}. In this Project, we use the Assertion on the properties of the instances of each problem and the Unit Test for checking the correctness of every reduction \cite{FV19}. We need to install JDK 8 in order to test the Scala Project \cite{OD16}. In addition, we need to install SBT to run the unit test (we could run the unit test with the $\textbf{sbt test}$ command) \cite{OD16}.
-
-\section{Conclusion}
+\section{Conclusions}
 
 No one has been able to find a polynomial time algorithm for any of more than $300$ important known $\textit{NP--complete}$ problems \cite{GJ79}. A proof of $P = NP$ will have stunning practical consequences, because it leads to efficient methods for solving some of the important problems in $NP$ \cite{CS00}. The consequences, both positive and negative, arise since various $\textit{NP--complete}$ problems are fundamental in many fields \cite{CS00}. All the following consequences are assuming that we have a practical solution for the $\textit{NP--complete}$ problems where such existence was proven with our result:
 
@@ -331,7 +356,11 @@ Cryptography, for example, relies on certain problems being difficult. A constru
 
 There are enormous positive consequences that will follow from rendering tractable many currently mathematically intractable problems. For instance, many problems in operations research are $\textit{NP--complete}$, such as some types of integer programming and the traveling salesman problem \cite{GJ79}. Efficient solutions to these problems have enormous implications for logistics \cite{CS00}. Many other important problems, such as some problems in protein structure prediction, are also $\textit{NP--complete}$, so this will spur considerable advances in biology \cite{BL98}.
 
-Moreover, Learning becomes easy by using the principle of Occam's razor: We simply find the smallest program consistent with the data \cite{LF09}. Near perfect vision recognition, language comprehension and translation and all other learning tasks become trivial \cite{LF09}. We will also have much better predictions of weather and earthquakes and other natural phenomenon \cite{LF09}.
+Since all the $\textit{NP--complete}$ optimization problems become easy, everything will be much more efficient \cite{LF09}. Transportation of all forms will be scheduled optimally to move people and goods around quicker and cheaper \cite{LF09}. Manufacturers can improve their production to increase speed and create less waste \cite{LF09}.
+
+Learning becomes easy by using the principle of Occam's razor: We simply find the smallest program consistent with the data \cite{LF09}. Near perfect vision recognition, language comprehension and translation and all other learning tasks become trivial \cite{LF09}. We will also have much better predictions of weather and earthquakes and other natural phenomenon \cite{LF09}.
+
+The economy would become vastly more efficient. There would be disruption, including maybe displacing programmers \cite{IMP95}. The practice of programming itself would be more about gathering training data and less about writing code \cite{IMP95}. Google would have the resources to excel in such a world \cite{IMP95}.
 
 But such changes may pale in significance compared to the revolution an efficient method for solving $\textit{NP--complete}$ problems will cause in mathematics itself. Research mathematicians spend their careers trying to prove theorems, and some proofs have taken decades or even centuries to find after problems have been stated. For instance, Fermat's Last Theorem took over three centuries to prove. A method that is guaranteed to find proofs to theorems, should one exist of a $``$reasonable$"$ size, would essentially end this struggle \cite{CS00}.
 
