@@ -97,17 +97,6 @@ where $\Sigma^{n}$ is the set of all strings over $\Sigma$ of length $n$ \cite{A
 \[L_{1} = \{w: M(w, c) = ``yes" \textit{ for some string } c\}.\]
 We measure the time of a verifier only in terms of the length of $w$, so a polynomial time verifier runs in polynomial time in the length of $w$ \cite{AB09}. A verifier uses additional information, represented by the symbol $c$, to verify that a string $w$ is a member of $L_{1}$. This information is called certificate. $NP$ is the complexity class of languages defined by polynomial time verifiers \cite{Pap03}. If $NP$ is the class of problems that have succinct certificates, then the complexity class $coNP$ must contain those problems that have succinct disqualifications \cite{Pap03}. That is, a $``no"$ instance of a problem in $coNP$ possesses a short proof of its being a $``no"$ instance \cite{Pap03}.
 
-\begin{lemma}
-\label{verifier}
-Given a language $L_{1} \in P$, a language $L_{2}$ is in $NP$ if there is a deterministic Turing machine $M$, where:
-\[L_{2} = \{w: M(w, c) = y \textit{ for some string } c \textit{ such that } y \in L_{1}\}\]
-and $M$ runs in polynomial time in the length of $w$. In this way, $NP$ is the complexity class of languages defined by polynomial time verifiers $M$ such that when the input is an element of the language with its certificate, then $M$ outputs a string which belongs to a single language in $P$.
-\end{lemma}
-
-\begin{proof}
-If $L_{1}$ can be decided by the Turing machine $M'$ in polynomial time, then the deterministic Turing machine $M''(w, c) = M'(M(w, c))$ will accept when $w \in L_{2}$. Consequently, $M''$ is a polynomial time verifier of $L_{2}$ and thus, $L_{2}$ is in $NP$.
-\end{proof}
-
 \subsection{First Hypothesis}
 
 A function $f : \Sigma^{*} \rightarrow \Sigma^{*}$ is a polynomial time computable function if some deterministic Turing machine $M$, on every input $w$, halts in polynomial time with just $f(w)$ on its tape \cite{MS06}. Let $\{0, 1\}^{*}$ be the infinite set of binary strings, we say that a language $L_{1} \subseteq \{0, 1\}^{*}$ is polynomial time reducible to a language $L_{2} \subseteq \{0, 1\}^{*}$, written $L_{1} \leq_{p} L_{2}$, if there is a polynomial time computable function $f : \{0, 1\}^{*} \rightarrow \{0, 1\}^{*}$ such that for all $x \in \{0, 1\}^{*}$:
@@ -332,7 +321,7 @@ We define a new problem:
 \begin{definition}
 $\textbf{SUM ZERO}$
 
-INSTANCE: A collection of integers (positive or negative) $C$ such that $0 \notin C$ and every integer in $C$ has the same bit-length of the number that represents the cardinality of $C$ multiplied by $3$ (we fill with zeroes to the left the elements with bit-length lesser than the cardinality of $C$ multiplied by $3$).
+INSTANCE: A collection of integers (positive or negative) $C$ such that $0 \notin C$ and every integer in $C$ has the same bit-length of the number that represents the cardinality of $C$ multiplied by $3$ (we fill with zeroes to the left the elements in case of necessity).
 
 QUESTION: Are there two elements $a, b \in C$ such that $a + b = 0$?
 
@@ -346,7 +335,7 @@ $\textit{SUM--ZERO} \in 1NL$.
 \end{theorem}
 
 \begin{proof}
-Given a collection of integers $C$, we can read its elements from left to right, verify that every element is not equal to $0$, check that every element in $C$ has the same bit-length and count the amount of elements in $C$ to finally compare it multiplied by $3$ with the single bit-length from the elements in $C$. In addition, we can nondeterministically pick two elements $a$ and $b$ from $C$ and accept in case of $a + b = 0$ otherwise we reject. We can make all this computation in a nondeterministically one-way using logarithmic space. Certainly, the calculation and store of the bit-length of the elements in $C$ could be done in logarithmic space since this is a unique value. On the one hand, we can count and store the number of elements that we read from the input and compare this multiplied by $3$ with the stored bit-length, since the cardinality of $C$ could be stored in a binary number of bit-length that is logarithmic in relation to the encoded length of $C$. On the other hand, the two elements $a$ and $b$ that we pick from $C$ have a logarithmic space in relation to the encoded length of $C$, because of every integer in $C$ has the same bit-length of the number that represents the cardinality of $C$ multiplied by $3$. Indeed, we never need to read to the left on the input for the acceptance of the elements in $\textit{SUM--ZERO}$ in a nondeterministically logarithmic space.
+Given a collection of integers $C$, we can read its elements from left to right, verify that every element is not equal to $0$, check that every element in $C$ has the same bit-length and count the amount of elements in $C$ to finally multiply it by $3$ and compare its bit-length with the single bit-length from the elements in $C$. In addition, we can nondeterministically pick two elements $a$ and $b$ from $C$ and accept in case of $a + b = 0$ otherwise we reject. We can make all this computation in a nondeterministically one-way using logarithmic space. Certainly, the calculation and store of the bit-length of the elements in $C$ could be done in logarithmic space since this is a unique value. On the one hand, we can count and store the number of elements that we read from the input and multiply it by $3$ to finally compare its bit-length with the stored bit-length, since the cardinality of $C$ multiplied by $3$ could be stored in a binary number of bit-length that is logarithmic in relation to the encoded length of $C$. On the other hand, the two elements $a$ and $b$ that we pick from $C$ have a logarithmic space in relation to the encoded length of $C$, because of every integer in $C$ has the same bit-length of the number that represents the cardinality of $C$ multiplied by $3$. Indeed, we never need to read to the left on the input for the acceptance of the elements in $\textit{SUM--ZERO}$ in a nondeterministically logarithmic space.
 \end{proof}
 
 \begin{theorem}
@@ -361,7 +350,7 @@ Given a Boolean formula $\phi$ in $3CNF$ with $n$ variables and $m$ clauses, we 
 \[\phi \in 3UNSAT \textit{ if and only if } C \in \textit{SUM--ZERO}\]
 since we assume the positive and negated literals of some variable in the input $\phi$ correspond to a positive integer and its negative value. Furthermore, we can make this verification in logarithmic space such that the array $A$ is placed on the special read-once tape, because we read at once the elements in the array $A$. Hence, we only need to iterate from the elements of the array $A$ to verify whether the array is an appropriated disqualification and pick the $m$ literals from the Boolean formula $\phi$ when we write the final integers that represent these literals to the output. This logarithmic space verification will be the Algorithm \ref{algorithm2}. We assume whether a value does not exist in the array $A$ into the cell of some position $i$ when $A[i] = undefined$. In addition, we reject immediately when the following comparisons
 \[A[i] < 1 \vee A[i] > 3\]
-hold at least into one single binary digit. Note, that every possible literal in $\phi$ could have a representation by an integer between $-3 \times m$ and $3 \times m$ with the exception of $0$, where $m$ is the cardinality of the collection $C$. In this way, we guarantee the output collection $C$ is an appropriated instance of $\textit{SUM--ZERO}$ just filling with zeroes to the left the elements with bit-length lesser than $3 \times m$.
+hold at least into one single binary digit. Note, that every possible literal in $\phi$ could have a representation by an integer between $-3 \times m$ and $3 \times m$ with the exception of $0$, where $m$ is the cardinality of the collection $C$. In this way, we guarantee the output collection $C$ is an appropriated instance of $\textit{SUM--ZERO}$ just filling with zeroes to the left the elements with bit-length lesser than $|3 \times m|$ where $|\ldots|$ is the bit-length function.
 
 \begin{algorithm}
 \caption{Logarithmic space disqualifier}\label{algorithm2}
@@ -389,7 +378,7 @@ hold at least into one single binary digit. Note, that every possible literal in
 \EndIf
 \Comment{From the indexed $i^{th}$ clause $c_{i} = (x_{j} \vee y_{k} \vee z_{r})$ in $\phi$}
 \Comment{Where $x$, $y$ and $z$ are literals with local indexes $\{j, k, r\} = \{1,2,3\}$ in $c_{i}$}
-\Comment{Output the integer of the $j^{th}$ literal filled with zeroes until $3 \times m$ bits}
+\Comment{Output the integer of the $j^{th}$ literal filled with zeroes until $|3 \times m|$ bits}
 \State \textbf{output} $``x_{j}"$
 \EndFor
 \EndProcedure
