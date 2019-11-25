@@ -173,7 +173,7 @@ An important complexity class is $\textit{coNP--complete}$ \cite{GJ79}. A langua
 \item $L' \leq_{p} L_{1}$ for every $L' \in coNP$.
 \end{itemize}
 
-If $L_{1}$ is a language such that $L' \leq_{p} L_{1}$ for some $L' \in \textit{coNP--complete}$, then $L_{1}$ is $\textit{coNP--hard}$ \cite{CLRS01}. Moreover, if $L_{1} \in coNP$, then $L_{1} \in \textit{coNP--complete}$ \cite{CLRS01}. A principal $\textit{coNP--complete}$ problem is $UNSAT$ \cite{GJ79}. A formula without any satisfying truth assignment is an unsatisfiable formula. The problem $UNSAT$ asks whether a given Boolean formula is unsatisfiable \cite{GJ79}.
+If $L_{1}$ is a language such that $L' \leq_{p} L_{1}$ for some $L' \in \textit{coNP--complete}$, then $L_{1}$ is $\textit{coNP--hard}$ \cite{CLRS01}. Moreover, if $L_{1} \in coNP$, then $L_{1} \in \textit{coNP--complete}$ \cite{CLRS01}. A principal $\textit{coNP--complete}$ problem is $UNSAT$ \cite{GJ79}. A Boolean formula without any satisfying truth assignment is unsatisfiable. The problem $UNSAT$ asks whether a given Boolean formula is unsatisfiable \cite{GJ79}.
 
 $coNL$ is the complexity class containing the languages when their complements belong to $NL$ \cite{Pap03}. We can give a disqualification-based definition for $coNL$ \cite{AB09}. The disqualification-based definition of $coNL$ assumes that a logarithmic space Turing machine has another separated read-only tape, that is the same kind of special tape called $``$read-once$"$ that we use in the certificate-based definition for $NL$ \cite{AB09}. Besides, in the disqualification-based definition of $coNL$, we assume the disqualification string is appropriated for the instance \cite{Pap03}. For example, a truth assignment for a Boolean formula $\phi$ in $3CNF$ is appropriated for the instance when every possible variable in $\phi$ could be evaluated in that truth assignment string, but we cannot affirm the same for every possible binary string.
 
@@ -321,9 +321,9 @@ We define a new problem:
 \begin{definition}
 $\textbf{SUM ZERO}$
 
-INSTANCE: A collection of integers (positive or negative) $C$ such that $0 \notin C$ and every integer in $C$ has the same bit-length of the number that represents the cardinality of $C$ multiplied by $3$ (we fill with zeroes to the left the elements in case of necessity).
+INSTANCE: A collection of integers $C$ such that $0 \notin C$ and every integer in $C$ has the same bit-length of the number that represents the cardinality of $C$ multiplied by $3$ (we do not take into account the symbol minus in the bit-length of the negative integers).
 
-QUESTION: Are there two elements $a, b \in C$ such that $a + b = 0$?
+QUESTION: Are there two elements $a, b \in C$, such that $a + b = 0$?
 
 REMARKS: We denote this problem as $\textit{SUM--ZERO}$.
 \end{definition}
