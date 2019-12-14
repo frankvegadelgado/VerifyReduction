@@ -3,9 +3,11 @@
  
 https://www.preprints.org/manuscript/201908.0037 
 
-https://hal.archives-ouvertes.fr/hal-02199310
+https://zenodo.org/record/3576209
 
-https://www.academia.edu/39973754/Logarithmic_Space_Verifiers_on_NP-complete
+https://www.academia.edu/39973754/P_versus_NP
+
+https://hal.archives-ouvertes.fr/hal-02199310
 
 # Open Problem 
 
@@ -13,7 +15,7 @@ https://www.academia.edu/39973754/Logarithmic_Space_Verifiers_on_NP-complete
 
 # Overview
 
-- In previous years there has been great interest in the verification or checking of computations. Interactive proofs introduced by Goldwasser, Micali and Rackoff and Babi can be viewed as a model of the verification process. Dwork and Stockmeyer and Condon have studied interactive proofs where the verifier is a space bounded computation instead of the original model where the verifer is a time bounded computation. In addition, Blum and Kannan has studied another model where the goal is to check a computation based solely on the final answer. More about probabilistic logarithmic space verifiers have been shown on a technique of Lipton. In this project, we show some results about the logarithmic space verifiers applied to the class NP which solve one of the most important open problems in computer science, that is P versus NP.
+- In previous years there has been great interest in the verification or checking of computations. Interactive proofs introduced by Goldwasser, Micali and Rackoff and Babi can be viewed as a model of the verification process. Dwork and Stockmeyer and Condon have studied interactive proofs where the verifier is a space bounded computation instead of the original model where the verifer is a time bounded computation. In addition, Blum and Kannan has studied another model where the goal is to check a computation based solely on the final answer. More about probabilistic logarithmic space verifiers and the complexity class NP has been investigated on a technique of Lipton. In this work, we show some results about the logarithmic space verifiers applied to the class NP and logarithmic space disqualifiers applied to the class coNP which solve one of the most important open problems in computer science, that is P versus NP.
 
 # Programming Techniques
 
