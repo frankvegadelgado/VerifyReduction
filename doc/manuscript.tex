@@ -378,10 +378,10 @@ hold at least into one single binary digit. Note, that every possible literal in
 \EndIf
 \Comment{From the indexed $i^{th}$ clause $c_{i} = (x_{j} \vee y_{k} \vee z_{r})$ in $\phi$}
 \Comment{Where $x$, $y$ and $z$ are literals with local indexes $\{j, k, r\} = \{1,2,3\}$ in $c_{i}$}
-\Comment{Output the integer representation of the $j^{th}$ literal}
+\Comment{Output the integer representation of the $j^{th}$ literal, that is $n(x_{j})$}
 \Comment{Filled with zeroes to the left until a total of $|3 \times m|$ bits including the literal}
 \Comment{But, the bit-length of the symbol minus is ignored in filling the negated literals}
-\State \textbf{output} $``,x_{j}"$
+\State \textbf{output} $``\ , \ n(x_{j})"$
 \EndFor
 \EndProcedure
 \end{algorithmic}
@@ -429,7 +429,7 @@ $NL = NP$.
 \end{theorem}
 
 \begin{proof}
-Since the polynomial time reduction in Theorem \ref{completeness} could be easily transformed in a logarithmic space reduction, then the $\textit{NP--complete}$ problem in Theorem \ref{neg-implication}, that would be $MAX\oplus2SAT$, is necessarily in $NL$ and thus all the problems in $NP$ when $L \neq NL$, because of the Cook's Theorem can also be transformed in a logarithmic space reduction \cite{GJ79}. For the same reason, the $\textit{coNP--complete}$ problem in Theorem \ref{pos-implication}, that would be $3UNSAT$, is necessarily in $coNL$ and thus all the problems in $coNP$ when $L = NL$. Since we have that $NL = coNL$ and either $L \neq NL$ or $L = NL$ is true, then the complexity class $NL$ is equal to $NP$ \cite{Pap03}.
+Since the polynomial time reduction in Theorem \ref{completeness} could be easily transformed in a logarithmic space reduction, then the $\textit{NP--complete}$ problem in Theorem \ref{neg-implication}, that would be $MAX\oplus2SAT$, is necessarily in $NL$ and thus all the problems in $NP$ when $L \neq NL$, because of the Cook's Theorem can also be transformed in a logarithmic space reduction \cite{GJ79}. For the same reason, the $\textit{coNP--complete}$ problem in Theorem \ref{pos-implication}, that would be $3UNSAT$, is necessarily in $coNL$ and thus all the problems in $coNP$ when $L = NL$. Since we have either $L \neq NL$ or $L = NL$ is true, then the complexity class $NL$ is equal to $NP$ \cite{Pap03}.
 \end{proof}
 
 \section{Conclusions}

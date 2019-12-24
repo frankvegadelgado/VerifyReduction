@@ -3,11 +3,11 @@
  
 https://www.preprints.org/manuscript/201908.0037 
 
-https://zenodo.org/record/3576209
+https://zenodo.org/record/3590433
 
 https://www.academia.edu/39973754/P_versus_NP
 
-https://hal.archives-ouvertes.fr/hal-02199310
+https://hal.archives-ouvertes.fr/hal-02422710
 
 # Open Problem 
 
