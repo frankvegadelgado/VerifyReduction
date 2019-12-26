@@ -433,7 +433,7 @@ $NL = NP$.
 \end{theorem}
 
 \begin{proof}
-Since the polynomial time reduction in Theorem \ref{completeness} could be easily transformed in a logarithmic space reduction, then the $\textit{NP--complete}$ problem in Theorem \ref{neg-implication}, that would be $MAX\oplus2SAT$, is necessarily in $NL$ and thus all the problems in $NP$ when $L \neq NL$, because of the Cook's Theorem can also be transformed in a logarithmic space reduction \cite{GJ79}. For the same reason, the $\textit{coNP--complete}$ problem in Theorem \ref{pos-implication}, that would be $3UNSAT$, is necessarily in $coNL$ and thus all the problems in $coNP$ when $L = NL$. Since we have either $L \neq NL$ or $L = NL$ is true, then the complexity class $NL$ is equal to $NP$.
+Since the polynomial time reduction in Theorem \ref{completeness} could be easily transformed in a logarithmic space reduction, then the $\textit{NP--complete}$ problem in Theorem \ref{neg-implication}, that would be $MAX\oplus2SAT$, is necessarily in $NL$ and thus all the problems in $NP$ when $L \neq NL$, because of the Cook's Theorem can also be transformed in a logarithmic space reduction \cite{GJ79}. Certainly, every $NP$ problem could be logarithmic space reduced to $SAT$ by the Cook's Theorem algorithm and $SAT$ can be indeed logarithmic space reduced to $\textit{NAE 3SAT}$ \cite{GJ79}. For the same reason, the $\textit{coNP--complete}$ problem in Theorem \ref{pos-implication}, that would be $3UNSAT$, is necessarily in $coNL$ and thus all the problems in $coNP$ when $L = NL$, since the problem $UNSAT$ can be actually logarithmic space reduced to $3UNSAT$ \cite{GJ79}. Since we have either $L \neq NL$ or $L = NL$ is true, then the complexity class $NL$ is equal to $NP$.
 \end{proof}
 
 \section{Conclusions}
@@ -448,7 +448,7 @@ No one has been able to find a polynomial time algorithm for any of more than $3
 \item But such changes may pale in significance compared to the revolution an efficient method for solving $\textit{NP--complete}$ problems will cause in mathematics itself \cite{CS00}. Research mathematicians spend their careers trying to prove theorems, and some proofs have taken decades or even centuries to find after problems have been stated \cite{AS17}. For instance, Fermat's Last Theorem took over three centuries to prove \cite{AS17}. A method that is guaranteed to find proofs to theorems, should one exist of a $``$reasonable$"$ size, would essentially end this struggle \cite{CS00}.
 \end{enumerate}
 
-We also prove that $NL = NP$. There are several important consequences from this result, but we will only mention one of the principal outcomes, that is the Theorem Buhrman-Fortnow-van Melkebeek-Torenvliet \cite{BU00}. A set $A$ is auto-reducible if there exists an oracle polynomial time Turing machine $M$ such that $L(M^{A}) = A$ with the restriction that for all $x$, $M^{A}(x)$ does not query whether $x$ is in $A$ \cite{BU00}. When $NL = NP$, Buhrman, Fortnow, van Melkebeek and Torenvliet created a series of constructions to get an $A$ such that $A$ is in $EXPSPACE$, $A$ is Turing-hard for $EXPSPACE$ and $A$ $``$diagonalizes$"$ against all possible auto-reductions \cite{BU00}.
+We also prove that $NL = NP$. There are several important consequences from this result, but we will only mention one of the principal outcomes, that would be the application of Theorem Buhrman-Fortnow-van Melkebeek-Torenvliet when $NL = NP$ \cite{BU00}.
 
 \bibliography{manuscript}
 
