@@ -191,7 +191,7 @@ A language $L_{1}$ is in $coNL$ if there exists a deterministic logarithmic spac
 where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its input tape and the disqualification $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read/write tapes for every input $x$ where $|\ldots|$ is the bit-length function \cite{AB09}. $M$ is called a logarithmic space disqualifier.
 \end{definition}
 
-For example, there is a well-known $coNL$ problem that states: Given a directed graph $G = (V, E)$ and two nodes $s, t \in V$, is there no possible path from $s$ to $t$? In that problem, an appropriated disqualification $u$ is a sequence of nodes contained in $V$ when $s$ is the first node and $t$ is the last one such that this sequence of nodes is not a path: There is at least two consecutive pair of nodes in the sequence where they are not connected by an edge.
+For example, there is a well-known $coNL$ problem that states: Given a directed graph $G = (V, E)$ and two nodes $s, t \in V$, is there no possible path from $s$ to $t$? In that problem, an appropriated disqualification $u$ is a sequence of nodes contained in $V$ when $s$ is the first node and $t$ is the last one such that this sequence of nodes is not a path: There is at least a consecutive pair of nodes in the sequence where they are not connected by an edge.
 
 We state the following Hypothesis:
 
@@ -230,7 +230,7 @@ REMARKS: $\textit{NAE 3SAT} \in \textit{NP--complete}$ \cite{GJ79}.
 We define a new problem:
 
 \begin{definition}
-$\textbf{MAXIMUM EXCLUSIVE-OR 2-SATISFIABILITY}$
+$\textbf{MAXIMUM EXCLUSIVE-OR 2SAT}$
 
 INSTANCE: A positive integer $K$ and a Boolean formula $\phi$ that is an instance of $\textit{XOR 2SAT}$.
 
