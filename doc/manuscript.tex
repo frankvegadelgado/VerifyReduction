@@ -95,14 +95,14 @@ Let $\Sigma$ be a finite alphabet with at least two elements, and let $\Sigma^{*
 
 Another relevant advance in the last century has been the definition of a complexity class. A language over an alphabet is any set of strings made up of symbols from that alphabet \cite{CLRS01}. A complexity class is a set of problems, which are represented as a language, grouped by measures such as the running time, memory, etc \cite{CLRS01}. The language accepted by a Turing machine $M$, denoted $L(M)$, has an associated alphabet $\Sigma$ and is defined by:
 \[L(M) = \{w \in \Sigma^{*}: M(w)=``yes" \}.\]
-We denote by $t_{M}(w)$ the number of steps in the computation of $M$ on input $w$ \cite{AB09}. For $n \in \mathbb{N}$ we denote by $T_{M}(n)$ the worst case run time of $M$; that is:
+Moreover, $L(M)$ is decided by $M$, when $w \notin L(M)$ if and only if $M(w)=``no"$ \cite{CLRS01}. We denote by $t_{M}(w)$ the number of steps in the computation of $M$ on input $w$ \cite{AB09}. For $n \in \mathbb{N}$ we denote by $T_{M}(n)$ the worst case run time of $M$; that is:
 \[T_{M}(n) = max\{t_{M}(w): w \in \Sigma^{n} \}\]
 where $\Sigma^{n}$ is the set of all strings over $\Sigma$ of length $n$ \cite{AB09}. We say that $M$ runs in polynomial time if there is a constant $k$ such that for all $n$, $T_{M}(n) \leq n^{k} + k$ \cite{AB09}. In other words, this means the language $L(M)$ can be decided by the Turing machine $M$ in polynomial time. Therefore, $P$ is the complexity class of languages that can be decided by deterministic Turing machines in polynomial time \cite{CLRS01}. A verifier for a language $L_{1}$ is a deterministic Turing machine $M$, where:
 \[L_{1} = \{w: M(w, c) = ``yes" \textit{ for some string } c\}.\]
 We measure the time of a verifier only in terms of the length of $w$, so a polynomial time verifier runs in polynomial time in the length of $w$ \cite{AB09}. A verifier uses additional information, represented by the symbol $c$, to verify that a string $w$ is a member of $L_{1}$. This information is called certificate. $NP$ is the complexity class of languages defined by polynomial time verifiers \cite{Pap03}. If $NP$ is the class of problems that have succinct certificates, then the complexity class $coNP$ must contain those problems that have succinct disqualifications \cite{Pap03}. That is, a $``no"$ instance of a problem in $coNP$ possesses a short proof of its being a $``no"$ instance \cite{Pap03}.
 
 \begin{definition}
-We will extend the definition of succinct disqualification for an element $w \in L_{2}$ when $L_{2} \in coNP$ as the polynomially bounded string $c$ such that $M(w, c) = ``no"$ and $M$ is the polynomial time verifier of the complement of $L_{2}$ in $NP$.
+We will extend the definition of succinct disqualification for an element $w \in L_{2}$ when $L_{2} \in coNP$ as the polynomially bounded string $c$ by $w$ such that $M(w, c) = ``no"$ and $M$ is the polynomial time verifier of the complement of $L_{2}$ in $NP$.
 \end{definition}
 
 \subsection{First Hypothesis}
