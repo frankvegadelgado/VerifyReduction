@@ -18,23 +18,19 @@
 %\newtheorem{lemma}[theorem]{Lemma}
 %\newtheorem{definition}[theorem]{Definition}
 \setbeamertemplate{theorems}[numbered]
+\newtheorem{hypothesis}[theorem]{Hypothesis}
 
 \begin{document}
 
 \title{$P$ versus $NP$}
 
-\subtitle{The proof on \url{https://www.preprints.org/manuscript/201908.0037/v1} \cite{PFV19}}
+%\subtitle{}
 
 \author{Frank Vega}
 
-%\address{Copsonic, 1471 Route de St-Nauphary, 82000 Montauban, France}
+%\address{}
 
 %\email{vega.frank@gmail.com}
-
-%\subjclass[2000]{Primary 68Q15}
-
-\keywords{complexity classes, completeness, verifier, reduction, polynomial time, logarithmic space}
-
 
 \maketitle
 
@@ -45,136 +41,351 @@ $P$ versus $NP$ is considered as one of the most important open problems in comp
 \end{frame}
 
 
-\begin{frame}{Another definition of $NP$}
+\begin{frame}{$L$ versus $NL$}
 
-We can define an $NP$ problem as
-
-\[L2 = \{w: M(w, c) = y \textit{ where } y \in L1\} (\textit{y is the output in the halting state})\]
-
-when $L1$ is a language in $P$, $M$ is a deterministic Turing machine that runs in polynomial time in the length of $w$ and $c$ (the certificate) is polynomially bounded by $w$.
+A logarithmic space Turing machine has a read-only input tape, a write-only output tape, and read/write work tapes. The work tapes may contain at most $O(\log n)$ symbols. In computational complexity theory, $L$ is the complexity class containing those decision problems that can be decided by a deterministic logarithmic space Turing machine. $NL$ is the complexity class containing the decision problems that can be decided by a nondeterministic logarithmic space Turing machine. Whether $L = NL$ is another fundamental question that it is as important as it is unresolved.
 
 \end{frame}
 
-\begin{frame}{Equivalent definition}
+\begin{frame}{The problem $\textit{XOR 2SAT}$}
 
-This is easy to prove since the polynomial time composition reduction can be done in polynomial time. Therefore, the previous definition complies with the existence of a polynomial time verifier $M’$ such that the $NP$ problem $L2$ is defined as
-
-\[L2 = \{w: M'(w, c) = ``yes"\} (\textit{``yes" is the acceptance state})\]
-
-where the computation of $M'(w, c)$ is equal to $N(M(w, c))$ when $N$ is the Turing machine which accepts $L1$ in polynomial time.
+We denote the $XOR$ function as $\oplus$. The $\textit{XOR 2SAT}$ problem will be equivalent to $\textit{XOR SAT}$, but the clauses in the formula have exactly two distinct literals. $\textit{XOR 2SAT}$ is in $L$.
 
 \end{frame}
 
-\begin{frame}{The logarithmic space verifier}
+\begin{frame}{A certificate-based definition for $NL$}
 
-On the other hand, the verifier for a language in $NL$ (nondeterministic logarithmic space class) has as premise that the certificate c is placed in a special tape that is read only and read at once (that means we cannot read to the left).
-
-\end{frame}
-
-\begin{frame}{Our result}
-
-\begin{theorem}
-\label{result}
-In our work was proved that we can define an $\textit{NP--complete}$ problem as
-
-\[L2 = \{w: M(w, c) = y \textit{ where } y \in L1\} (\textit{y is the output in the halting state})\]
-
-when $L1$ is a language in $L$ (deterministic logarithmic space class), $M$ is a deterministic Turing machine that runs in logarithmic space in the length of $w$ and $c$ (the certificate) is polynomially bounded by $w$ such that $c$ is placed in the special tape in $M$ that is read only and read at once.
-\end{theorem}
+We can give a certificate-based definition for $NL$. The certificate-based definition of $NL$ assumes that a logarithmic space Turing machine has another separated read-only tape. On each step of the machine, the machine's head on that tape can either stay in place or move to the right. In particular, it cannot reread any bit to the left of where the head currently is. For that reason this kind of special tape is called $``$read-once$"$.
 
 \end{frame}
 
-\begin{frame}{Converting the verifier}
-
-We can simulate the computation $M(w, c) = y$ by a nondeterministic logarithmic space Turing machine $N$, such that $N(w) = y$ since we can read the certificate string $c$ within the read-once tape by a work tape in a nondeterministic logarithmic space generation of symbols contained in $c$. Certainly, we can simulate the reading of one symbol from the string $c$ into the read-once tape just nondeterministically generating the same symbol in the work tapes using a logarithmic space.
-
-\end{frame}
-
-\begin{frame}{The classes $1L$ and $1NL$}
+\begin{frame}{Definition of an $NL$ problem}
 
 \begin{definition}
-Hartmanis and Mahaney have investigated the classes 1L and 1NL of languages recognizable by deterministic one-way logarithmic space Turing machine and nondeterministic one-way logarithmic space Turing machine, respectively. The one-way machines are not allowed to move the input head to the left.
+A language $L_{1}$ is in $NL$ if there exists a deterministic logarithmic space Turing machine $M$ with an additional special read-once input tape polynomial $p: \mathbb{N} \rightarrow \mathbb{N}$ such that for every $x \in \{0, 1\}^{*}$:
+\[x \in L_{1} \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)} \textit{ such that } M(x, u) = ``yes" \]
+where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its input tape and the certificate $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read/write tapes for every input $x$ where $|\ldots|$ is the bit-length function. $M$ is called a logarithmic space verifier.
 \end{definition}
 
 \end{frame}
 
-\begin{frame}{Supposition}
+\begin{frame}{Hypothesis \ref{hypothesis1}}
 
-If we suppose that $L \subset 1NL$, then we can accept the elements of the language $L1 \in L$ by a nondeterministic one-way logarithmic space Turing machine $M'$. In this way, there is a nondeterministic logarithmic space Turing machine $M''(w) = M'(N(w))$ which will halt in the acceptance state when $w \in L2$. Consequently, $M''$ is a nondeterministic logarithmic space Turing machine which decides the language $L2$.
+\begin{hypothesis}
+\label{hypothesis1}
+Given a nonempty language $L_{1} \in L$, there is a language $L_{2}$ in $\textit{NP--complete}$ with a deterministic Turing machine $M$, where:
+\[L_{2} = \{w: M(w, u) = y, \ \exists \textit{ string } u \textit{ such that } y \in L_{1}\}\]
+when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$. In this way, there is an $\textit{NP--complete}$ language defined by a logarithmic space verifier $M$ such that when the input is an element of the language with its certificate, then $M$ outputs a string which belongs to a single language in $L$.
+\end{hypothesis}
 
 \end{frame}
 
-\begin{frame}{The arguments}
+\begin{frame}{Two-way and one-way Turing machines}
+
+From the early days of automata and complexity  theory,  two  different  models  of  Turing  machines  are  considered, the offline and online machines. Each model has a read-only input tape and some work tapes. The offline machines may read their input two-way while the online machines are not allowed to move the input head to the left. In the terminology of the (generalized) Turing machine models are called two-way and one-way Turing machines, respectively.
+
+\end{frame}
+
+\begin{frame}{One-way logarithmic space Turing machine}
+
+Hartmanis and Mahaney have investigated the classes $1L$ and $1NL$ of languages recognizable by deterministic one-way logarithmic space Turing machine and nondeterministic one-way logarithmic space Turing machine, respectively. They have shown that $1L \neq 1NL$ (by looking at a uniform variant of the string non-equality problem from communication complexity theory) and have defined a natural complete problem for $1NL$ under deterministic one-way logarithmic space reductions. Furthermore, they have proven that $1NL \subseteq L$ if and only if $L=NL$.
+
+\end{frame}
+
+\begin{frame}{When the Hypothesis \ref{hypothesis1} is true}
+
+\begin{theorem}
+\label{neg-implication}
+If the Hypothesis \ref{hypothesis1} is true, therefore when $L \neq NL$, then $P = NP$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+We can simulate the computation $M(w, u) = y$ in the Hypothesis \ref{hypothesis1} by a nondeterministic logarithmic space Turing machine $N$ such that $N(w) = y$, since we can read the certificate string $u$ within the read-once tape by a work tape in a nondeterministic logarithmic space generation of symbols contained in $u$. Certainly, we can simulate the reading of one symbol from the string $u$ into the read-once tape just nondeterministically generating the same symbol in the work tapes using a logarithmic space.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+If we suppose that $L \subset 1NL$, then we can accept the elements of the language $L_{1} \in L$ by a nondeterministic one-way logarithmic space Turing machine $M'$. In this way, there is a nondeterministic logarithmic space Turing machine $M''(w) = M'(N(w))$ which will accept when $w \in L_{2}$. Consequently, $M''$ is a nondeterministic logarithmic space Turing machine which decides the language $L_{2}$.
+
+\end{frame}
+
+\begin{frame}{Proof}
 
 The reason is because we can simulate the output string of $N(w)$ within a read-once tape and thus, we can compute in a nondeterministic logarithmic space the logarithmic space composition using the same techniques of the logarithmic space composition reduction, but without any reset of the computation. Certainly, we do not need to reset the computation of $N(w)$ for the reading at once of a symbol in the output string of $N(w)$ by the nondeterministic one-way logarithmic space Turing machine $M'$.
 
 \end{frame}
 
-\begin{frame}{Consequences}
 
-Therefore, $L2 \in NL$ and thus, $L2 \in P$ due to $NL \subseteq P$. If any single $\textit{NP--complete}$ problem can be solved in polynomial time, then $P = NP$. Since $L2 \in P$ and $L2 \in \textit{NP--complete}$, then we obtain the complexity class $P$ is equal to $NP$ under the assumption that $L \subset 1NL$. Hartmanis and Mahaney have also shown with their result that if $1NL$ is a subset of $L$, then $L=NL$, because they proved there is a complete problem for both $1NL$ and $NL$ at the same time. If this way, if $L \neq NL$, then $L \subset 1NL$ by contraposition. Since we already obtained that $P = NP$ under the assumption that $L \subset 1NL$, therefore if $L \neq NL$, then $P = NP$.
+\begin{frame}{Proof}
+
+Therefore, $L_{2}$ is in $NL$ and thus, $L_{2} \in P$ due to $NL \subseteq P$. If any single $\textit{NP--complete}$ problem can be solved in polynomial time, then $P = NP$. Since $L_{2} \in P$ and $L_{2} \in \textit{NP--complete}$, then we obtain the complexity class $P$ is equal to $NP$ under the assumption that $L \subset 1NL$.
 
 \end{frame}
 
-\begin{frame}{The complexity class $LNL$}
+\begin{frame}{Proof}
+
+Hartmanis and Mahaney have also shown with their result that if $1NL \subseteq L$ or even $1NL \subset L$, then $L=NL$, because they proved there is a complete problem for both $1NL$ and $NL$ at the same time. In this way, if $L \neq NL$, then $L \subset 1NL$ by contraposition. Since we already obtained that $P = NP$ under the assumption that $L \subset 1NL$, therefore if $L \neq NL$, then $P = NP$. \qed
+
+\end{frame}
+
+\begin{frame}{Definition of a $coNL$ problem}
 
 \begin{definition}
-\label{definition}
-The class $LNL$ contains those languages that are decided by a nondeterministic logarithmic space Turing machine $N$ such that for every element $x = yz$ of these languages, there are a prefix and suffix substrings $y$ and $z$ where $N$ moves strictly deterministically on $y$ and strictly nondeterministically on $z$ when strictly deterministically means there is no a possible nondeterministic step and strictly nondeterministically means there is at least one nondeterministic step on the computation.
+A language $L_{1}$ is in $coNL$ if there exists a deterministic logarithmic space Turing machine $M$ with an additional special read-once input tape polynomial $p: \mathbb{N} \rightarrow \mathbb{N}$ such that for every $x \in \{0, 1\}^{*}$:
+\[x \in L_{1} \Leftrightarrow \forall \textit{ appropriated } u \in \{0, 1\}^{p(|x|)} \textit{ then } M(x, u) = ``yes" \]
+where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its input tape and the disqualification $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read/write tapes for every input $x$ where $|\ldots|$ is the bit-length function. $M$ is called a logarithmic space disqualifier.
 \end{definition}
 
 \end{frame}
 
-\begin{frame}{The class $BNL$}
+\begin{frame}{Example}
 
-Sauerhoff has investigated the class $BNL$ of languages recognizable by nondeterministic logarithmic space Turing machine, that only use nondeterministic moves before reading their input ($``$nondeterminism at the beginning$"$).
+For example, there is a well-known $coNL$ problem that states: Given a directed graph $G = (V, E)$ and two nodes $s, t \in V$, is there no possible path from $s$ to $t$? In that problem, an appropriated disqualification $u$ is a sequence of nodes contained in $V$ when $s$ is the first node and $t$ is the last one such that this sequence of nodes is not a path: There is at least a consecutive pair of nodes in the sequence where they are not connected by an edge.
 
+\end{frame}
+
+\begin{frame}{Hypothesis \ref{hypothesis2}}
+
+\begin{hypothesis}
+\label{hypothesis2}
+Given a nonempty language $L_{1} \in 1NL$, there is a language $L_{2}$ in $\textit{coNP--complete}$ with a deterministic Turing machine $M$, where:
+\[L_{2} = \{w: M(w, u) = y, \ \forall \textit{ appropriated string } u \textit{ such that } y \in L_{1}\}\]
+when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$. In this way, there is a $\textit{coNP--complete}$ language defined by a logarithmic space disqualifier $M$ such that when the input is an element of the language with any of its appropriated disqualification, then $M$ always outputs a string which belongs to a single language in $1NL$.
+\end{hypothesis}
+
+\end{frame}
+
+\begin{frame}{When the Hypothesis \ref{hypothesis2} is true}
+
+\begin{theorem}
+\label{pos-implication}
+If the Hypothesis \ref{hypothesis2} is true, therefore when $L = NL$, then $P = NP$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+We can accept the elements of the language $L_{1} \in 1NL$ by a nondeterministic one-way logarithmic space Turing machine $M'$. In this way, there is a nondeterministic logarithmic space Turing machine $M''(w, u) = M'(M(w, u))$ which will accept when $w \in L_{2}$ for all the appropriated disqualification $u$, where $u$ is placed on the special read-once tape of $M''$.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+The reason is because we can simulate the output string of $M(w, u)$ within a read-once tape and thus, we can compute in a nondeterministic logarithmic space the logarithmic space composition using the same techniques of the logarithmic space composition reduction, but without any reset of the computation. Certainly, we do not need to reset the computation of $M(w, u)$ for the reading at once of a symbol in the output string of $M(w, u)$ by the nondeterministic one-way logarithmic space Turing machine $M'$.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Consequently, $M''$ can be converted into a logarithmic space disqualifier for the language $L_{2}$ just assuming that $L = NL$, because of the nondeterministic logarithmic space Turing machine $M''$ could be simulated by a deterministic logarithmic space Turing machine. Therefore, $L_{2}$ is in $coNL$ and thus, $L_{2} \in P$ due to $coNL \subseteq P$. If any single $\textit{coNP--complete}$ problem can be solved in polynomial time, then $P = NP$. Since $L_{2} \in P$ and $L_{2} \in \textit{coNP--complete}$, then we obtain the complexity class $P$ is equal to $NP$ under the assumption that $L = NL$. \qed
+
+\end{frame}
+
+\begin{frame}{$\textbf{NAE 3SAT}$}
+
+\begin{definition}
+INSTANCE: A Boolean formula $\phi$ in $3CNF$.
+
+QUESTION: Is there a truth assignment for $\phi$ such that each clause has at least one true literal and at least one false literal?
+
+REMARKS: $\textit{NAE 3SAT} \in \textit{NP--complete}$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{$\textbf{MAXIMUM EXCLUSIVE-OR 2SAT}$}
+
+\begin{definition}
+INSTANCE: A positive integer $K$ and a Boolean formula $\phi$ that is an instance of $\textit{XOR 2SAT}$.
+
+QUESTION: Is there a truth assignment in $\phi$ such that at most $K$ clauses are unsatisfied?
+
+REMARKS: We denote this problem as $MAX\oplus2SAT$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{$\textit{NP--completeness}$}
+
+\begin{theorem}
+\label{completeness}
+$MAX\oplus2SAT \in \textit{NP--complete}$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+It is trivial to see $MAX\oplus2SAT \in NP$. Given a Boolean formula $\phi$ in $3CNF$ with $n$ variables and $m$ clauses, we create three new variables $a_{c_{i}}$, $b_{c_{i}}$ and $d_{c_{i}}$ for each clause $c_{i} = (x \vee y \vee z)$ in $\phi$, where $x$, $y$ and $z$ are literals, in the following formula:
+\[P_{i} = (a_{c_{i}} \oplus b_{c_{i}}) \wedge (b_{c_{i}} \oplus d_{c_{i}}) \wedge (a_{c_{i}} \oplus d_{c_{i}}) \wedge (x \oplus a_{c_{i}}) \wedge (y \oplus b_{c_{i}}) \wedge (z \oplus d_{c_{i}}).\]
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+We can see $P_{i}$ has at most one unsatisfied clause for some truth assignment if and only if at least one member of $\{x,y,z\}$ is true and at least one member of $\{x,y,z\}$ is false for the same truth assignment. Hence, we can create the Boolean formula $\psi$ as the conjunction of the $P_{i}$ formulas for every clause $c_{i}$ in $\phi$, such that $\psi = P_{1} \wedge \ldots \wedge P_{m}$.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Finally, we obtain that:
+\[\phi \in \textit{NAE 3SAT} \textit{ if and only if } (\psi, m) \in MAX\oplus2SAT.\]
+Consequently, we prove $\textit{NAE 3SAT} \leq_{p} MAX\oplus2SAT$ where we already know the language $\textit{NAE 3SAT} \in \textit{NP--complete}$. To sum up, we show $MAX\oplus2SAT \in \textit{NP--hard}$ and $MAX\oplus2SAT \in NP$ and thus, $MAX\oplus2SAT \in \textit{NP--complete}$. \qed
+
+\end{frame}
+
+\begin{frame}{Hypothesis \ref{hypothesis1} proof}
+
+\begin{theorem}
+\label{proof}
+There is a deterministic Turing machine $M$, where:
+\[MAX\oplus2SAT = \{w: M(w, u) = y, \exists \textit{ string } u \textit{ such that } y \in \textit{XOR 2SAT}\}\]
+when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Given a valid instance $(\psi, K)$ for $MAX\oplus2SAT$ when $\psi$ has $m$ clauses, we can create a certificate array $A$ which contains $K$ different natural numbers in ascending order which represents the indexes of the clauses in $\psi$ that we are going to remove from the instance. We read at once the elements of the array $A$ and we reject whether this is not an appropriated certificate: That is when the numbers are not sorted in ascending order, or the array $A$ does not contain exactly $K$ elements, or the array $A$ contains a number that is not between $1$ and $m$.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+While we read the elements of the array $A$, we remove the clauses from the instance $(\psi, K)$ for $MAX\oplus2SAT$ just creating another instance $\phi$ for $\textit{XOR 2SAT}$ where the Boolean formula $\phi$ does not contain the $K$ different indexed clauses $\psi$ represented by the numbers in $A$. Therefore, we obtain the array $A$ would be valid according to the Theorem \ref{proof} when:
+\[(\psi, K) \in MAX\oplus2SAT \Leftrightarrow (\exists \textit{ appropriated array } A \textit{ such that } \phi \in \textit{XOR 2SAT}).\]
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Furthermore, we can make this verification in logarithmic space such that the array $A$ is placed on the special read-once tape, because we read at once the elements in the array $A$ and we assume the clauses in the input $\psi$ are indexed from left to right. Hence, we only need to iterate from the elements of the array $A$ to verify whether the array is an appropriated certificate and also remove the $K$ different clauses from the Boolean formula $\psi$ when we write the final clauses to the output.  \qed
+
+\end{frame}
+
+\begin{frame}{$\textbf{3UNSAT}$}
+
+\begin{definition}
+INSTANCE: A Boolean formula $\phi$ in $3CNF$.
+
+QUESTION: Is $\phi$ unsatisfiable?
+
+REMARKS: $3UNSAT \in \textit{coNP--complete}$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{$\textbf{SUM ZERO}$}
+
+\begin{definition}
+INSTANCE: A collection of integers $C$ such that $0 \notin C$ and every integer in $C$ has the same bit-length of the number that represents the cardinality of $C$ multiplied by $3$ (we do not take into account the symbol minus in counting the bit-length of the negative integers).
+
+QUESTION: Are there two elements $a, b \in C$, such that $a + b = 0$?
+
+REMARKS: We denote this problem as $0SUM$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Contained in $1NL$}
+
+\begin{theorem}
+\label{1nl}
+$0SUM \in 1NL$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Given a collection of integers $C$, we can read its elements from left to right, verify that every element is not equal to $0$, check that every element in $C$ has the same bit-length and count the amount of elements in $C$ to finally multiply it by $3$ and compare its bit-length with the single bit-length from the elements in $C$. In addition, we can nondeterministically pick two elements $a$ and $b$ from $C$ and accept in case of $a + b = 0$ otherwise we reject. We can make all this computation in a nondeterministic one-way using logarithmic space.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Certainly, the calculation and store of the bit-length of the elements in $C$ could be done in logarithmic space since this is a unique value. On the one hand, we can count and store the number of elements that we read from the input and multiply it by $3$ to finally compare its bit-length with the stored unique bit-length from the elements of the collection, since the cardinality of $C$ multiplied by $3$ could be stored in a binary number of bit-length that is logarithmic in relation to the encoded length of $C$.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+On the other hand, the two elements $a$ and $b$ that we pick from $C$ have a logarithmic space in relation to the encoded length of $C$, because of every integer in $C$ has the same bit-length of the number that represents the cardinality of $C$ multiplied by $3$. Indeed, we never need to read to the left on the input for the acceptance of the elements in $0SUM$ in a nondeterministic logarithmic space. \qed
+
+\end{frame}
+
+\begin{frame}{Hypothesis \ref{hypothesis2} proof}
+
+\begin{theorem}
+\label{demonstration}
+There is a deterministic Turing machine $M$, where:
+\[3UNSAT = \{w: M(w, u) = y, \forall \textit{ appropriated string } u \textit{ such that } y \in 0SUM\}\]
+when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Given a Boolean formula $\phi$ in $3CNF$ with $n$ variables and $m$ clauses, we can create a disqualification array $A$ which contains $m$ positive integers between $1$ and $3$ which represents the literals of the clauses in $\phi$ which appear from left to right. We read at once the elements of the array $A$ and we reject whether this is not an appropriated disqualification: That is when the array $A$ does not contain exactly $m$ elements, or the array $A$ contains a number that is not between $1$ and $3$.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+While we read the elements of the array $A$, we select from the clauses $\phi$ the literals such that these ones occupy the position that represents the number between $1$ and $3$, that is the first, second or third place within the clause from left to right. In this way, we output the selected literals that are represented by a positive or negative (in case of a negated variable) integer just creating another instance $C$ for $0SUM$ where the collection $C$ contains those integers which are the selected literals for each clause in $\phi$.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Therefore, we obtain that all the appropriated array $A$ would be valid according to the Theorem \ref{demonstration} when:
+\[\phi \in 3UNSAT \Leftrightarrow (\forall \textit{ appropriated array } A \textit{ such that } C \in 0SUM)\]
+since we assume the positive and negated literals of some variable in the input $\phi$ correspond to a positive integer and its negative value, respectively.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Furthermore, we can make this disqualification in logarithmic space such that the array $A$ is placed on the special read-once tape, because we read at once the elements in the array $A$. Hence, we only need to iterate from the elements of the array $A$ to verify whether the array is an appropriated disqualification and pick the $m$ literals from the Boolean formula $\phi$ when we write the final integers that represent these literals to the output.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Note, that every possible literal in $\phi$ could have a representation by an integer between $-3 \times m$ and $3 \times m$ with the exception of $0$, where $m$ is the cardinality of the collection $C$. In this way, we guarantee the output collection $C$ is an appropriated instance of $0SUM$ just filling with zeroes to the left the elements with bit-length lesser than $|3 \times m|$ where $|\ldots|$ is the bit-length function. \qed
+
+\end{frame}
+
+\begin{frame}{Final Result}
+
+\begin{theorem}
+$P = NP$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+If $L \neq NL$, then $P = NP$ as a consequence of the Hypothesis \ref{hypothesis1}. If $L = NL$, then $P = NP$ as a consequence of the Hypothesis \ref{hypothesis2}. Since we have either $L \neq NL$ or $L = NL$ is true, then the complexity class $P$ is equal to $NP$. \qed
 
 \end{frame}
 
 
-\begin{frame}{Proof of $LNL = NL$}
+\begin{frame}{THE END}
 
-We have that $NL \subseteq LNL$, because the prefix substring $y$ of an instance $x = yz$ could be the empty string. Certainly, all the languages in the class $NL$ could be decided by nondeterministic logarithmic space Turing machines such that they always do a single nondeterministic step after the original acceptance state choosing nondeterministically the same acceptance state within two equals choices from the original and modified deterministic or nondeterministic logarithmic space Turing machines which decide these languages (this is assuming the prefix substring $y$ is the empty string in the elements $x = yz$). Moreover, we have that $LNL \subseteq NL$, because the languages in $LNL$ are decided by nondeterministic logarithmic space Turing machines. Since $NL \subseteq LNL$ and $LNL \subseteq NL$, then the complexity class $LNL$ is equal to $NL$.
-\end{frame}
-
-\begin{frame}{Proof of $L \neq NL$}
-
-However, we can state that $BNL \neq LNL$, because there is no possible way over the Definition \ref{definition} of $LNL$ for an element $x = yz$ in some languages in $BNL$ when the prefix substring $y$ is the empty string, such that we could move strictly nondeterministically on $y$ (that would be a $``$nondeterminism at the beginning$"$) and move strictly deterministically on the nonempty string $z$. Hence, we obtain that $BNL \neq NL$ by transitivity. Nevertheless, Sauerhoff has also shown that $L \subseteq BNL \subseteq NL$. Consequently, we prove the complexity class $L$ is not equal to $NL$.
+\begin{center}
+$\textbf{QUESTIONS?}$
+\end{center}
 
 \end{frame}
 
-\begin{frame}{Conclusion: $P = NP$}
-
-Since we show that $L \neq NL$, then we prove the complexity class $P$ is equal to $NP$.
-
-\end{frame}
-
-\begin{frame}{Code}
-
-In this Scala Project \cite{GFV19}, we use the Assertion on the properties of the instances of each problem and the Unit Test for checking the correctness of the Theorem \ref{result}. We need to install JDK 8 in order to test the Scala Project. In addition, we need to install SBT to run the unit test (we could run the unit test with the $\textbf{sbt test}$ command).
-
-\end{frame}
-
-\begin{frame}{References}
-
-\begin{thebibliography}{1}
-
-\bibitem{PFV19}
-Frank Vega.
-\newblock Logarithmic Space Verifiers on NP-complete.
-\newblock In {\em Preprints}, 2019, 2019080037.
-\newblock \href {https://doi.org/10.20944/preprints201908.0037.v1}
-  {\path{doi:10.20944/preprints201908.0037.v1}}.
-
-\bibitem{GFV19}
-Frank Vega.
-\newblock Verify{R}eduction, August 2019.
-\newblock In a GitHub repository at
-  \url{https://github.com/frankvegadelgado/VerifyReduction}.
-
-\end{thebibliography}
-
-\end{frame}
 
 \end{document}   
