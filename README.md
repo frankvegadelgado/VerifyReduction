@@ -3,7 +3,7 @@
  
 https://www.preprints.org/manuscript/201908.0037 
 
-https://zenodo.org/record/3604362
+https://zenodo.org/record/3605338
 
 https://www.academia.edu/39973754/P_versus_NP
 

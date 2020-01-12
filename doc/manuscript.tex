@@ -138,11 +138,11 @@ A logarithmic space transducer is a Turing machine with a read-only input tape, 
 \[x \in L_{1} \textit{ if and only if } f(x) \in L_{2}.\]
 The logarithmic space reduction is used in the definition of the complete languages for the classes $L$ and $NL$ \cite{Pap03}. A Boolean formula is in 2-conjunctive normal form, or $2CNF$, if it is in $CNF$ and each clause has exactly two distinct literals. There is a problem called $2SAT$, where we asked whether a given Boolean formula $\phi$ in $2CNF$ is satisfiable. $2SAT$ is complete for $NL$ \cite{Pap03}. Another special case is the class of problems where each clause contains $XOR$ (i.e. exclusive or) rather than (plain) $OR$ operators. This is in $P$, since an $\textit{XOR SAT}$ formula can also be viewed as a system of linear equations mod $2$, and can be solved in cubic time by Gaussian elimination \cite{MM11}. We denote the $XOR$ function as $\oplus$. The $\textit{XOR 2SAT}$ problem will be equivalent to $\textit{XOR SAT}$, but the clauses in the formula have exactly two distinct literals. $\textit{XOR 2SAT}$ is in $L$ \cite{AR00}, \cite{RM08}.
 
-We can give a certificate-based definition for $NL$ \cite{AB09}. The certificate-based definition of $NL$ assumes that a logarithmic space Turing machine has another separated read-only tape \cite{AB09}. On each step of the machine, the machine's head on that tape can either stay in place or move to the right \cite{AB09}. In particular, it cannot reread any bit to the left of where the head currently is \cite{AB09}. For that reason this kind of special tape is called $``$read-once$"$ \cite{AB09}.
+We can give a certificate-based definition for $NL$ \cite{AB09}. The certificate-based definition of $NL$ assumes that a logarithmic space Turing machine has another separated read-only tape \cite{AB09}. On each step of the machine, the machine's head on that tape can either stay in place or move to the right \cite{AB09}. In particular, it cannot reread any bit to the left of where the head currently is \cite{AB09}. For that reason this kind of special tape is called $``$read-once$"$ \cite{AB09}. Besides, in the certificate-based definition of $NL$, we assume the certificate string is appropriated for the instance \cite{Pap03}. For example, a truth assignment for a Boolean formula $\phi$ is appropriated for the instance when every possible variable in $\phi$ could be evaluated in that truth assignment string, but we cannot affirm the same for every possible binary string.
 
 \begin{definition}
 A language $L_{1}$ is in $NL$ if there exists a deterministic logarithmic space Turing machine $M$ with an additional special read-once input tape polynomial $p: \mathbb{N} \rightarrow \mathbb{N}$ such that for every $x \in \{0, 1\}^{*}$:
-\[x \in L_{1} \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)} \textit{ such that } M(x, u) = ``yes" \]
+\[x \in L_{1} \Leftrightarrow \exists \textit{ appropriated } u \in \{0, 1\}^{p(|x|)} \textit{ such that } M(x, u) = ``yes" \]
 where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its input tape and the certificate $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read/write tapes for every input $x$ where $|\ldots|$ is the bit-length function \cite{AB09}. $M$ is called a logarithmic space verifier \cite{AB09}.
 \end{definition}
 
@@ -151,7 +151,7 @@ We state the following Hypothesis:
 \begin{hypothesis}
 \label{hypothesis1}
 Given a nonempty language $L_{1} \in L$, there is a language $L_{2}$ in $\textit{NP--complete}$ with a deterministic Turing machine $M$, where:
-\[L_{2} = \{w: M(w, u) = y, \exists \textit{ string } u \textit{ such that } y \in L_{1}\}\]
+\[L_{2} = \{w: M(w, u) = y, \exists \textit{ appropriated } u \textit{ such that } y \in L_{1}\}\]
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$. In this way, there is an $\textit{NP--complete}$ language defined by a logarithmic space verifier $M$ such that when the input is an element of the language with its certificate, then $M$ outputs a string which belongs to a single language in $L$.
 \end{hypothesis}
 
@@ -183,12 +183,12 @@ An important complexity class is $\textit{coNP--complete}$ \cite{GJ79}. A langua
 
 If $L_{1}$ is a language such that $L' \leq_{p} L_{1}$ for some $L' \in \textit{coNP--complete}$, then $L_{1}$ is $\textit{coNP--hard}$ \cite{CLRS01}. Moreover, if $L_{1} \in coNP$, then $L_{1} \in \textit{coNP--complete}$ \cite{CLRS01}. A principal $\textit{coNP--complete}$ problem is $UNSAT$ \cite{GJ79}. A Boolean formula without any satisfying truth assignment is unsatisfiable. The problem $UNSAT$ asks whether a given Boolean formula is unsatisfiable \cite{GJ79}.
 
-$coNL$ is the complexity class containing the languages such that their complements belong to $NL$ \cite{Pap03}. We can give a disqualification-based definition for $coNL$ \cite{AB09}. The disqualification-based definition of $coNL$ assumes that a logarithmic space Turing machine has another separated read-only tape, that is the same kind of special tape called $``$read-once$"$ that we use in the certificate-based definition for $NL$ \cite{AB09}. Besides, in the disqualification-based definition of $coNL$, we assume the disqualification string is appropriated for the instance \cite{Pap03}. For example, a truth assignment for a Boolean formula $\phi$ in $3CNF$ is appropriated for the instance when every possible variable in $\phi$ could be evaluated in that truth assignment string, but we cannot affirm the same for every possible binary string.
+$coNL$ is the complexity class containing the languages such that their complements belong to $NL$ \cite{Pap03}. We can give a disqualification-based definition for $coNL$ \cite{AB09}. The disqualification-based definition of $coNL$ assumes that a logarithmic space Turing machine has another separated read-only tape, that is the same kind of special tape called $``$read-once$"$ that we use in the certificate-based definition for $NL$ \cite{AB09}. Besides, in the disqualification-based definition of $coNL$, we assume the disqualification string is appropriated for the instance \cite{Pap03}.
 
 \begin{definition}
 A language $L_{1}$ is in $coNL$ if there exists a deterministic logarithmic space Turing machine $M$ with an additional special read-once input tape polynomial $p: \mathbb{N} \rightarrow \mathbb{N}$ such that for every $x \in \{0, 1\}^{*}$:
 \[x \in L_{1} \Leftrightarrow \forall \textit{ appropriated } u \in \{0, 1\}^{p(|x|)} \textit{ then } M(x, u) = ``yes" \]
-where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its input tape and the disqualification $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read/write tapes for every input $x$ where $|\ldots|$ is the bit-length function \cite{AB09}. $M$ is called a logarithmic space disqualifier.
+where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its input tape and the disqualification $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read/write tapes for every input $x$ where $|\ldots|$ is the bit-length function. $M$ is called a logarithmic space disqualifier.
 \end{definition}
 
 For example, there is a well-known $coNL$ problem that states: Given a directed graph $G = (V, E)$ and two nodes $s, t \in V$, is there no possible path from $s$ to $t$? In that problem, an appropriated disqualification $u$ is a sequence of nodes contained in $V$ when $s$ is the first node and $t$ is the last one such that this sequence of nodes is not a path: There is at least a consecutive pair of nodes in the sequence where they are not connected by an edge.
@@ -198,7 +198,7 @@ We state the following Hypothesis:
 \begin{hypothesis}
 \label{hypothesis2}
 Given a nonempty language $L_{1} \in 1NL$, there is a language $L_{2}$ in $\textit{coNP--complete}$ with a deterministic Turing machine $M$, where:
-\[L_{2} = \{w: M(w, u) = y, \forall \textit{ appropriated string } u \textit{ such that } y \in L_{1}\}\]
+\[L_{2} = \{w: M(w, u) = y, \forall \textit{ appropriated } u \textit{ such that } y \in L_{1}\}\]
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$. In this way, there is a $\textit{coNP--complete}$ language defined by a logarithmic space disqualifier $M$ such that when the input is an element of the language with any of its appropriated disqualification, then $M$ always outputs a string which belongs to a single language in $1NL$.
 \end{hypothesis}
 
@@ -256,7 +256,7 @@ Consequently, we prove $\textit{NAE 3SAT} \leq_{p} MAX\oplus2SAT$ where we alrea
 \begin{theorem}
 \label{proof}
 There is a deterministic Turing machine $M$, where:
-\[MAX\oplus2SAT = \{w: M(w, u) = y, \exists \textit{ string } u \textit{ such that } y \in \textit{XOR 2SAT}\}\]
+\[MAX\oplus2SAT = \{w: M(w, u) = y, \exists \textit{ appropriated } u \textit{ such that } y \in \textit{XOR 2SAT}\}\]
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$.
 \end{theorem}
 
@@ -351,7 +351,7 @@ Given a collection of integers $C$, we can read its elements from left to right,
 \begin{theorem}
 \label{demonstration}
 There is a deterministic Turing machine $M$, where:
-\[3UNSAT = \{w: M(w, u) = y, \forall \textit{ appropriated string } u \textit{ such that } y \in \textit{SUM--ZERO}\}\]
+\[3UNSAT = \{w: M(w, u) = y, \forall \textit{ appropriated } u \textit{ such that } y \in \textit{SUM--ZERO}\}\]
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$.
 \end{theorem}
 

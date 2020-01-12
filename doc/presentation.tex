@@ -24,7 +24,8 @@
 
 \title{$P$ versus $NP$}
 
-%\subtitle{}
+\subtitle{The $15^{th}$ International Computer Science Symposium in Russia\\
+ $\textbf{(CSR 2020)}$}
 
 \author{Frank Vega}
 
@@ -59,11 +60,17 @@ We can give a certificate-based definition for $NL$. The certificate-based defin
 
 \end{frame}
 
+\begin{frame}{A certificate-based definition for $NL$}
+
+Besides, in the certificate-based definition of $NL$, we assume the certificate string is appropriated for the instance. For example, a truth assignment for a Boolean formula $\phi$ is appropriated for the instance when every possible variable in $\phi$ could be evaluated in that truth assignment string, but we cannot affirm the same for every possible binary string.
+
+\end{frame}
+
 \begin{frame}{Definition of an $NL$ problem}
 
 \begin{definition}
 A language $L_{1}$ is in $NL$ if there exists a deterministic logarithmic space Turing machine $M$ with an additional special read-once input tape polynomial $p: \mathbb{N} \rightarrow \mathbb{N}$ such that for every $x \in \{0, 1\}^{*}$:
-\[x \in L_{1} \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)} \textit{ such that } M(x, u) = ``yes" \]
+\[x \in L_{1} \Leftrightarrow \exists \textit{ appropriated } u \in \{0, 1\}^{p(|x|)} \textit{ such that } M(x, u) = ``yes" \]
 where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its input tape and the certificate $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read/write tapes for every input $x$ where $|\ldots|$ is the bit-length function. $M$ is called a logarithmic space verifier.
 \end{definition}
 
@@ -74,7 +81,7 @@ where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its i
 \begin{hypothesis}
 \label{hypothesis1}
 Given a nonempty language $L_{1} \in L$, there is a language $L_{2}$ in $\textit{NP--complete}$ with a deterministic Turing machine $M$, where:
-\[L_{2} = \{w: M(w, u) = y, \ \exists \textit{ string } u \textit{ such that } y \in L_{1}\}\]
+\[L_{2} = \{w: M(w, u) = y, \ \exists \textit{ appropriated } u \textit{ such that } y \in L_{1}\}\]
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$. In this way, there is an $\textit{NP--complete}$ language defined by a logarithmic space verifier $M$ such that when the input is an element of the language with its certificate, then $M$ outputs a string which belongs to a single language in $L$.
 \end{hypothesis}
 
@@ -153,7 +160,7 @@ For example, there is a well-known $coNL$ problem that states: Given a directed 
 \begin{hypothesis}
 \label{hypothesis2}
 Given a nonempty language $L_{1} \in 1NL$, there is a language $L_{2}$ in $\textit{coNP--complete}$ with a deterministic Turing machine $M$, where:
-\[L_{2} = \{w: M(w, u) = y, \ \forall \textit{ appropriated string } u \textit{ such that } y \in L_{1}\}\]
+\[L_{2} = \{w: M(w, u) = y, \ \forall \textit{ appropriated } u \textit{ such that } y \in L_{1}\}\]
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$. In this way, there is a $\textit{coNP--complete}$ language defined by a logarithmic space disqualifier $M$ such that when the input is an element of the language with any of its appropriated disqualification, then $M$ always outputs a string which belongs to a single language in $1NL$.
 \end{hypothesis}
 
@@ -245,7 +252,7 @@ Consequently, we prove $\textit{NAE 3SAT} \leq_{p} MAX\oplus2SAT$ where we alrea
 \begin{theorem}
 \label{proof}
 There is a deterministic Turing machine $M$, where:
-\[MAX\oplus2SAT = \{w: M(w, u) = y, \exists \textit{ string } u \textit{ such that } y \in \textit{XOR 2SAT}\}\]
+\[MAX\oplus2SAT = \{w: M(w, u) = y, \exists \textit{ appropriated } u \textit{ such that } y \in \textit{XOR 2SAT}\}\]
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$.
 \end{theorem}
 
@@ -326,7 +333,7 @@ On the other hand, the two elements $a$ and $b$ that we pick from $C$ have a log
 \begin{theorem}
 \label{demonstration}
 There is a deterministic Turing machine $M$, where:
-\[3UNSAT = \{w: M(w, u) = y, \forall \textit{ appropriated string } u \textit{ such that } y \in 0SUM\}\]
+\[3UNSAT = \{w: M(w, u) = y, \forall \textit{ appropriated } u \textit{ such that } y \in 0SUM\}\]
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$.
 \end{theorem}
 
@@ -378,12 +385,23 @@ If $L \neq NL$, then $P = NP$ as a consequence of the Hypothesis \ref{hypothesis
 
 \end{frame}
 
+\begin{frame}{$NL$ versus $NP$}
 
-\begin{frame}{THE END}
+\begin{theorem}
+$NL = NP$.
+\end{theorem}
 
-\begin{center}
-$\textbf{QUESTIONS?}$
-\end{center}
+\end{frame}
+
+\begin{frame}{Proof}
+
+Since the polynomial time reduction in Theorem \ref{completeness} could be easily transformed in a logarithmic space reduction, then the $\textit{NP--complete}$ problem in Theorem \ref{neg-implication}, that would be $MAX\oplus2SAT$, is necessarily in $NL$ and thus all the problems in $NP$ when $L \neq NL$, because of the Cook's Theorem can also be transformed in a logarithmic space reduction. Certainly, every $NP$ problem could be logarithmic space reduced to $SAT$ by the Cook's Theorem algorithm and $SAT$ can be indeed logarithmic space reduced to $\textit{NAE 3SAT}$.
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+For the same reason, the $\textit{coNP--complete}$ problem in Theorem \ref{pos-implication}, that would be $3UNSAT$, is necessarily in $coNL$ and thus all the problems in $coNP$ when $L = NL$, because of the problem $UNSAT$ can be actually logarithmic space reduced to $3UNSAT$. Since we have either $L \neq NL$ or $L = NL$ is true, then the complexity class $NL$ is equal to $NP$. \qed
 
 \end{frame}
 
