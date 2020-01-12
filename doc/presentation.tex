@@ -252,7 +252,8 @@ Consequently, we prove $\textit{NAE 3SAT} \leq_{p} MAX\oplus2SAT$ where we alrea
 \begin{theorem}
 \label{proof}
 There is a deterministic Turing machine $M$, where:
-\[MAX\oplus2SAT = \{w: M(w, u) = y, \exists \textit{ appropriated } u \textit{ such that } y \in \textit{XOR 2SAT}\}\]
+\[MAX\oplus2SAT = \{w: M(w, u) = y, \exists \textit{ appropriated } u\]
+\[\textit{such that } y \in \textit{XOR 2SAT}\}\]
 when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$.
 \end{theorem}
 
@@ -267,7 +268,8 @@ Given a valid instance $(\psi, K)$ for $MAX\oplus2SAT$ when $\psi$ has $m$ claus
 \begin{frame}{Proof}
 
 While we read the elements of the array $A$, we remove the clauses from the instance $(\psi, K)$ for $MAX\oplus2SAT$ just creating another instance $\phi$ for $\textit{XOR 2SAT}$ where the Boolean formula $\phi$ does not contain the $K$ different indexed clauses $\psi$ represented by the numbers in $A$. Therefore, we obtain the array $A$ would be valid according to the Theorem \ref{proof} when:
-\[(\psi, K) \in MAX\oplus2SAT \Leftrightarrow (\exists \textit{ appropriated array } A \textit{ such that } \phi \in \textit{XOR 2SAT}).\]
+\[(\psi, K) \in MAX\oplus2SAT \Leftrightarrow (\exists \textit{ appropriated array } A\]
+\[\textit{such that } \phi \in \textit{XOR 2SAT}).\]
 
 \end{frame}
 
@@ -371,7 +373,7 @@ Note, that every possible literal in $\phi$ could have a representation by an in
 
 \end{frame}
 
-\begin{frame}{Final Result}
+\begin{frame}{Result}
 
 \begin{theorem}
 $P = NP$.
