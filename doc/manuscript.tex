@@ -72,7 +72,7 @@
 
 %TODO mandatory: add short abstract of the document
 \begin{abstract}
-P versus NP is considered as one of the most important open problems in computer science. This consists in knowing the answer of the following question: Is P equal to NP? It was essentially mentioned in 1955 from a letter written by John Nash to the United States National Security Agency. However, a precise statement of the P versus NP problem was introduced independently by Stephen Cook and Leonid Levin. Since that date, all efforts to find a proof for this problem have failed. Another major complexity classes are L and NL. Whether L = NL is another fundamental question that it is as important as it is unresolved. We demonstrate if L is not equal to NL, then P = NP. In addition, we show if L is equal to NL, then P = NP. In this way, we prove the complexity class P is equal to NP. Furthermore, we demonstrate the complexity class NL is equal to NP.
+P versus NP is considered as one of the most important open problems in computer science. This consists in knowing the answer of the following question: Is P equal to NP? It was essentially mentioned in 1955 from a letter written by John Nash to the United States National Security Agency. However, a precise statement of the P versus NP problem was introduced independently by Stephen Cook and Leonid Levin. Since that date, all efforts to find a proof for this problem have failed. Another major complexity classes are L and NL. Whether L = NL is another fundamental question that it is as important as it is unresolved. We demonstrate if L is not equal to NL, then P = NP. In addition, we show if L is equal to NL, then P = NP. In this way, we prove the complexity class P is equal to NP. Furthermore, we demonstrate the complexity class L is equal to NP.
 \end{abstract}
 
 \section{Introduction}
@@ -435,11 +435,20 @@ Since we have either $L \neq NL$ or $L = NL$ is true, then the complexity class 
 \end{proof}
 
 \begin{theorem}
+\label{nl}
 $NL = NP$.
 \end{theorem}
 
 \begin{proof}
 Since the polynomial time reduction in Theorem \ref{completeness} could be easily transformed in a logarithmic space reduction, then the $\textit{NP--complete}$ problem in Theorem \ref{neg-implication}, that would be $MAX\oplus2SAT$, is necessarily in $NL$ and thus all the problems in $NP$ when $L \neq NL$, because of the Cook's Theorem can also be transformed in a logarithmic space reduction \cite{GJ79}. Certainly, every $NP$ problem could be logarithmic space reduced to $SAT$ by the Cook's Theorem algorithm and $SAT$ can be indeed logarithmic space reduced to $\textit{NAE 3SAT}$ \cite{GJ79}. For the same reason, the $\textit{coNP--complete}$ problem in Theorem \ref{pos-implication}, that would be $3UNSAT$, is necessarily in $coNL$ and thus all the problems in $coNP$ when $L = NL$, because of the problem $UNSAT$ can be actually logarithmic space reduced to $3UNSAT$ \cite{GJ79}. Since we have either $L \neq NL$ or $L = NL$ is true, then the complexity class $NL$ is equal to $NP$.
+\end{proof}
+
+\begin{theorem}
+$L = NP$.
+\end{theorem}
+
+\begin{proof}
+Under the assumption of $L \subseteq 1NL$, then we would obtain that $1NL = NL$. Certainly, the logarithmic space verifier of Theorem \ref{proof} works into one-way when $L \subseteq 1NL$. Indeed, the logarithmic space verifier through the certificate generates the output into one-way according to the arguments provided by the proof in Theorem \ref{proof}. Moreover, we know that $\textit{XOR 2SAT} \in 1NL$ under the assumption of $L \subseteq 1NL$, since $\textit{XOR 2SAT}$ is in $L$ \cite{AR00}, \cite{RM08}. In this way, we obtain that $MAX\oplus2SAT \in 1NL$. Since $MAX\oplus2SAT$ is $\textit{NP--complete}$ under logarithmic space reductions and $NL = NP$ due to Theorem \ref{nl}, then we would deduce that $1NL = NL$, because of every problem in $NP$ could be reduced to $MAX\oplus2SAT$ under $1NL$-reductions. However, it is a known result that $1NL \neq NL$ \cite{MI92}. Consequently, we obtain that $1NL \subset L$ as a consequence of this contradiction. Since $1NL \subset L$ implies $L=NL$ \cite{HM81}, then we have the complexity class $L$ is equal to $NP$.
 \end{proof}
 
 \section{Conclusions}
@@ -455,8 +464,6 @@ Since all the $\textit{NP--complete}$ optimization problems become easy, everyth
 There would be disruption, including maybe displacing programmers \cite{IMP95}. The practice of programming itself would be more about gathering training data and less about writing code \cite{IMP95}. Google would have the resources to excel in such a world \cite{IMP95}.
 
 But such changes may pale in significance compared to the revolution an efficient method for solving $\textit{NP--complete}$ problems will cause in mathematics itself \cite{CS00}. Research mathematicians spend their careers trying to prove theorems, and some proofs have taken decades or even centuries to find after problems have been stated \cite{AS17}. For instance, Fermat's Last Theorem took over three centuries to prove \cite{AS17}. A method that is guaranteed to find proofs to theorems, should one exist of a $``$reasonable$"$ size, would essentially end this struggle \cite{CS00}.
-
-We also prove that $NL = NP$. There are several important consequences from this result, but we will only mention one of the principal outcomes, that would be the application of Theorem Buhrman-Fortnow-van Melkebeek-Torenvliet when $NL = NP$ \cite{BU00}.
 
 \bibliography{manuscript}
 

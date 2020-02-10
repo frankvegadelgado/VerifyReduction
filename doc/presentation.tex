@@ -387,9 +387,10 @@ If $L \neq NL$, then $P = NP$ as a consequence of the Hypothesis \ref{hypothesis
 
 \end{frame}
 
-\begin{frame}{$NL$ versus $NP$}
+\begin{frame}{Extended version: $NL$ versus $NP$}
 
 \begin{theorem}
+\label{nl}
 $NL = NP$.
 \end{theorem}
 
@@ -407,5 +408,23 @@ For the same reason, the $\textit{coNP--complete}$ problem in Theorem \ref{pos-i
 
 \end{frame}
 
+\begin{frame}{Extended version: $L$ versus $NP$}
+
+\begin{theorem}
+$L = NP$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Proof}
+
+Under the assumption of $L \subseteq 1NL$, then we would obtain that $1NL = NL$. Certainly, the logarithmic space verifier of Theorem \ref{proof} works into one-way when $L \subseteq 1NL$. Indeed, the logarithmic space verifier through the certificate generates the output into one-way according to the arguments provided by the proof in Theorem \ref{proof}. Moreover, we know that $\textit{XOR 2SAT} \in 1NL$ under the assumption of $L \subseteq 1NL$, since $\textit{XOR 2SAT}$ is in $L$. In this way, we obtain that $MAX\oplus2SAT \in 1NL$. 
+\end{frame}
+
+\begin{frame}{Proof}
+
+Since $MAX\oplus2SAT$ is $\textit{NP--complete}$ under logarithmic space reductions and $NL = NP$ due to Theorem \ref{nl}, then we would deduce that $1NL = NL$, because of every problem in $NP$ could be reduced to $MAX\oplus2SAT$ under $1NL$-reductions. However, it is a known result that $1NL \neq NL$. Consequently, we obtain that $1NL \subset L$ as a consequence of this contradiction. Since $1NL \subset L$ implies $L=NL$, then we have the complexity class $L$ is equal to $NP$. \qed
+
+\end{frame}
 
 \end{document}   
