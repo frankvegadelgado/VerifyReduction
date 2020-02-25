@@ -20,9 +20,9 @@
 
 \bibliographystyle{plainurl}% the mandatory bibstyle
 
-\title{P versus NP} %TODO Please add
+\title{NL versus NP} %TODO Please add
 
-%\titlerunning{P vs NP}%optional, please use if title is longer than one line
+\titlerunning{NL vs NP}%optional, please use if title is longer than one line
 
 \author{Frank Vega}{Joysonic, Uzun Mirkova 5, Belgrade, 11000, Serbia} {vega.frank@gmail.com}{https://orcid.org/0000-0001-8210-4126}{}
 
@@ -264,7 +264,7 @@ $NL = NP$ and thus, $P = NP$.
 \end{theorem}
 
 \begin{proof}
-The Hypothesis \ref{hypothesis1} is true according to Theorem \ref{proof}. Since the polynomial time reduction in Theorem \ref{completeness} could be easily transformed in a logarithmic space reduction, then the $\textit{NP--complete}$ problem in Hypothesis \ref{hypothesis1}, that would be $MAX\oplus2SAT$, is necessarily in $NL$ and thus all the problems in $NP$, because of the Cook's Theorem can also be transformed in a logarithmic space reduction \cite{GJ79}. Certainly, every $NP$ problem could be logarithmic space reduced to $SAT$ by the Cook's Theorem algorithm and $SAT$ can be indeed logarithmic space reduced to $\textit{NAE 3SAT}$ \cite{GJ79}. In addition, as a consequence of Theorem \ref{completeness}, the problem $\textit{NAE 3SAT}$ could be logarithmic space reduced to $MAX\oplus2SAT$. In this way, we obtain that $NL = NP$ as result of Theorem \ref{implication}. Since $NL \subseteq P$, then $P = NP$ \cite{Pap03}.
+The Hypothesis \ref{hypothesis1} is true according to Theorem \ref{result1}. Since the polynomial time reduction in Theorem \ref{completeness} could be easily transformed in a logarithmic space reduction, then the $\textit{NP--complete}$ problem in Hypothesis \ref{hypothesis1}, that would be $MAX\oplus2SAT$, is necessarily in $NL$ and thus all the problems in $NP$, because of the Cook's Theorem can also be transformed in a logarithmic space reduction \cite{GJ79}. Certainly, every $NP$ problem could be logarithmic space reduced to $SAT$ by the Cook's Theorem algorithm and $SAT$ can be indeed logarithmic space reduced to $\textit{NAE 3SAT}$ \cite{GJ79}. In addition, as a consequence of Theorem \ref{completeness}, the problem $\textit{NAE 3SAT}$ could be logarithmic space reduced to $MAX\oplus2SAT$. In this way, we obtain that $NL = NP$ as result of Theorem \ref{implication}. Since $NL \subseteq P$, then $P = NP$ \cite{Pap03}.
 \end{proof}
 
 \section{Conclusions}
