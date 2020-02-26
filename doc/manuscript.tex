@@ -306,11 +306,11 @@ INSTANCE: Given a directed graph $G = (V, E)$ that is topologically sorted and t
 
 QUESTION: Is there a path from $s$ to $t$?
 
-REMARKS: $TAGAP \in \textit{NL--complete}$ \cite{HM81}. Certainly, this problem remains in $\textit{NL--complete}$ even if the graph is not acyclic \cite{HM81}. 
+REMARKS: $TAGAP \in \textit{NL--complete}$ \cite{HM81}. Certainly, this problem remains in $\textit{NL--complete}$ even if the graph is not acyclic \cite{HM81}.
 \end{definition}
 
 \begin{definition}
-An instance $\phi$ of $\textit{XOR 2SAT}$ is topologically sorted when for any pair of clauses $(a, b)$ and $(b, c)$ in $\phi$, then the clause $(a, b)$ is listed before $(b, c)$.
+An instance $\phi$ of $\textit{XOR 2SAT}$ is topologically sorted when for any pair of clauses $(a \oplus b)$ and $(b \oplus c)$ in $\phi$, then the clause $(a \oplus b)$ is listed before $(b \oplus c)$.
 \end{definition}
 
 \begin{definition}
@@ -326,7 +326,7 @@ $\textit{TAGAP 2SAT} \in L$.
 \end{theorem}
 
 \begin{proof}
-We can check whether an instance $\phi$ of $\textit{XOR 2SAT}$ is topologically sorted in logarithmic space. Certainly, for each clause $(a, b)$ we can verify in logarithmic space whether there is not another clause $(b, c)$ that is listed before of $(a, b)$. In addition, given an instance $\phi$ of $\textit{XOR 2SAT}$ with $m$ clauses, for each clause of two literals $c_{i} = (x \oplus y)$ in the input tape, we create a new clause $d_{i} = (x \oplus \rightharpoondown y)$ into the output tape, where $x$ and $y$ are literals. Moreover, for each clause of one literal $c_{i} = (x)$ in the input tape, we create the same clause $d_{i} = (x)$ into the output tape, where $x$ is a literal. Hence, we can create a new instance $\psi$ of $\textit{XOR 2SAT}$ as the conjunction of the $d_{i}$ clauses for every clause $c_{i}$ in $\phi$, such that $\psi = d_{1} \wedge \ldots \wedge d_{m}$. Finally, we obtain that:
+We can check whether an instance $\phi$ of $\textit{XOR 2SAT}$ is topologically sorted in logarithmic space. Certainly, for each clause $(a \oplus b)$ we can verify in logarithmic space whether there is not another clause $(b \oplus c)$ that is listed before of $(a \oplus b)$. In addition, given an instance $\phi$ of $\textit{XOR 2SAT}$ with $m$ clauses, for each clause of two literals $c_{i} = (x \oplus y)$ in the input tape, we create a new clause $d_{i} = (x \oplus \rightharpoondown y)$ into the output tape, where $x$ and $y$ are literals. Moreover, for each clause of one literal $c_{i} = (x)$ in the input tape, we create the same clause $d_{i} = (x)$ into the output tape, where $x$ is a literal. Hence, we can create a new instance $\psi$ of $\textit{XOR 2SAT}$ as the conjunction of the $d_{i}$ clauses for every clause $c_{i}$ in $\phi$, such that $\psi = d_{1} \wedge \ldots \wedge d_{m}$. Finally, we obtain that:
 \[\phi \in \textit{TAGAP 2SAT} \textit{ if and only if } \psi \in \textit{XOR 2SAT}.\]
 Consequently, we prove $\textit{TAGAP 2SAT} \leq_{l} \textit{XOR 2SAT}$ where we already know the language $\textit{XOR 2SAT} \in L$ \cite{AR00}, \cite{RM08}. Since $L$ is closed under logarithmic space reductions, then we obtain that $\textit{TAGAP 2SAT} \in L$ \cite{Pap03}.
 \end{proof}
