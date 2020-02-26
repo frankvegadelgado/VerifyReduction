@@ -72,7 +72,7 @@
 
 %TODO mandatory: add short abstract of the document
 \begin{abstract}
-P versus NP is considered as one of the most important open problems in computer science. This consists in knowing the answer of the following question: Is P equal to NP? It was essentially mentioned in 1955 from a letter written by John Nash to the United States National Security Agency. However, a precise statement of the P versus NP problem was introduced independently by Stephen Cook and Leonid Levin. Since that date, all efforts to find a proof for this problem have failed. Another major complexity classes are L and NL. Whether L = NL is another fundamental question that it is as important as it is unresolved. We show if L is equal to NL, then P = NP. In addition, we demonstrate that L is equal to NL. In this way, we prove the complexity class P is equal to NP.
+P versus NP is considered as one of the most important open problems in computer science. This consists in knowing the answer of the following question: Is P equal to NP? It was essentially mentioned in 1955 from a letter written by John Nash to the United States National Security Agency. However, a precise statement of the P versus NP problem was introduced independently by Stephen Cook and Leonid Levin. Since that date, all efforts to find a proof for this problem have failed. Another major complexity classes are L and NL. Whether L = NL is another fundamental question that it is as important as it is unresolved. We show if L is equal to NL, then P = NP. In addition, we demonstrate that L is equal to NL. In this way, we prove the complexity class P is equal to NP. Furthermore, we demonstrate the complexity class L is equal to NP.
 \end{abstract}
 
 \section{Introduction}
@@ -295,18 +295,18 @@ This is a direct consequence of Theorems \ref{pos-implication} and \ref{result2}
 
 \subsection{L versus NL}
 
-A directed acyclic graph $G = (V, E)$ is topologically sorted when for any pair of edges $(a, b)$ and $(b, c)$ in $G$, then the edge $(a, b)$ is listed before $(b, c)$ \cite{HM81}.
+A directed graph $G = (V, E)$ is topologically sorted when for any pair of edges $(a, b)$ and $(b, c)$ in $G$, then the edge $(a, b)$ is listed before $(b, c)$ \cite{HM81}.
 
 We show a previous known $\textit{NL--complete}$ problem:
 
 \begin{definition}
 $\textbf{TAGAP}$
 
-INSTANCE: Given a directed acyclic graph $G = (V, E)$ that is topologically sorted and two nodes $s, t \in V$.
+INSTANCE: Given a directed graph $G = (V, E)$ that is topologically sorted and two nodes $s, t \in V$.
 
 QUESTION: Is there a path from $s$ to $t$?
 
-REMARKS: $TAGAP \in \textit{NL--complete}$ \cite{HM81}.
+REMARKS: $TAGAP \in \textit{NL--complete}$ \cite{HM81}. Certainly, this problem remains in $\textit{NL--complete}$ even if the graph is not acyclic \cite{HM81}. 
 \end{definition}
 
 \begin{definition}
@@ -346,7 +346,7 @@ $coTAGAP \leq_{l} \textit{TAGAP 2SAT}$.
 \end{theorem}
 
 \begin{proof}
-Given a directed acyclic graph $G = (V, E)$ that is topologically sorted and two nodes $s, t \in V$, for each edge $(x, y)$ in the input tape from left to right, we create a new clause $(x \oplus y)$ for an instance $\phi$ of $\textit{XOR 2SAT}$ into the output tape, where $x$ and $y$ are positive literals represented by the positive integers $x$ and $y$ which are two nodes in $G$. In addition, before we generate the first clause from the edges, then we create the clause $(\rightharpoondown s)$ into the output tape, and after we generate all the clauses, then we create the clause $(t)$ into the output tape from the IN and OUT nodes of the possible path $s, t \in V$: This is possible because an instance of $\textit{XOR 2SAT}$ have clauses of at most two literals \cite{AR00}.
+Given a directed graph $G = (V, E)$ that is topologically sorted and two nodes $s, t \in V$, for each edge $(x, y)$ in the input tape from left to right, we create a new clause $(x \oplus y)$ for an instance $\phi$ of $\textit{XOR 2SAT}$ into the output tape, where $x$ and $y$ are positive literals represented by the positive integers $x$ and $y$ which are two nodes in $G$. In addition, before we generate the first clause from the edges, then we create the clause $(\rightharpoondown s)$ into the output tape, and after we generate all the clauses, then we create the clause $(t)$ into the output tape from the IN and OUT nodes of the possible path $s, t \in V$: This is possible because an instance of $\textit{XOR 2SAT}$ have clauses of at most two literals \cite{AR00}.
 We can see the final instance $\phi$ of $\textit{XOR 2SAT}$ into the output tape will be topologically sorted, since we create the clauses through the edges from left to right with the exception of $(\rightharpoondown s)$ that is the first clause and $(t)$ that is the last one in $\phi$. Hence, if $\phi$ is an acceptance instance of $\textit{TAGAP 2SAT}$, then there is no a possible path from $s$ to $t$ in $G$, because it is necessary that $s$ and $t$ must be false and true on the clauses $(\rightharpoondown s)$ and $(t)$, respectively. Certainly, if there is path from $s$ to $t$, then $s$ and $t$ should be both true or both false in order the instance $\phi$ of $\textit{TAGAP 2SAT}$ could be possible accepted. Finally, we obtain that:
 \[G \in coTAGAP \textit{ if and only if } \phi \in \textit{TAGAP 2SAT}.\]
 Consequently, we prove $coTAGAP \leq_{l} \textit{TAGAP 2SAT}$ \cite{Pap03}.
@@ -366,7 +366,15 @@ $P = NP$.
 \end{theorem}
 
 \begin{proof}
-This is a direct consequence of Theorems \ref{equal-NP} and \ref{equal-L}. 
+This is a direct consequence of Theorems \ref{equal-NP} and \ref{equal-L}.
+\end{proof}
+
+\begin{theorem}
+$L = NP$.
+\end{theorem}
+
+\begin{proof}
+The $\textit{coNP--complete}$ problem in Theorem \ref{pos-implication}, that would be $3UNSAT$, is necessarily in $coNL$ and thus all the problems in $coNP$ when $L = NL$, because of every problem in $coNP$ can be actually logarithmic space reduced to $3UNSAT$ \cite{GJ79}. Certainly, every $coNP$ problem could be logarithmic space reduced to $UNSAT$ by the Cook's Theorem algorithm and $UNSAT$ can be indeed logarithmic space reduced to $3UNSAT$ \cite{GJ79}. Since we have that $L = NL = coNL$ is true, then the complexity class $L$ is equal to $NP$.
 \end{proof}
 
 \section{Conclusions}
