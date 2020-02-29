@@ -22,7 +22,7 @@
 
 \title{P versus NP} %TODO Please add
 
-\titlerunning{P vs NP}%optional, please use if title is longer than one line
+%\titlerunning{P vs NP}%optional, please use if title is longer than one line
 
 \author{Frank Vega}{Joysonic, Uzun Mirkova 5, Belgrade, 11000, Serbia} {vega.frank@gmail.com}{https://orcid.org/0000-0001-8210-4126}{}
 
@@ -72,12 +72,12 @@
 
 %TODO mandatory: add short abstract of the document
 \begin{abstract}
-P versus NP is considered as one of the most important open problems in computer science. This consists in knowing the answer of the following question: Is P equal to NP? It was essentially mentioned in 1955 from a letter written by John Nash to the United States National Security Agency. However, a precise statement of the P versus NP problem was introduced independently by Stephen Cook and Leonid Levin. Since that date, all efforts to find a proof for this problem have failed. Another major complexity classes are L and NL. Whether L = NL is another fundamental question that it is as important as it is unresolved. We show if L is equal to NL, then P = NP. In addition, we demonstrate that L is equal to NL. In this way, we prove the complexity class P is equal to NP. Furthermore, we demonstrate the complexity class L is equal to NP.
+P versus NP is considered as one of the most important open problems in computer science. This consists in knowing the answer of the following question: Is P equal to NP? It was essentially mentioned in 1955 from a letter written by John Nash to the United States National Security Agency. However, a precise statement of the P versus NP problem was introduced independently by Stephen Cook and Leonid Levin. Since that date, all efforts to find a proof for this problem have failed. Another major complexity classes are L and NL. Whether L = NL is another fundamental question that it is as important as it is unresolved. We demonstrate if L is not equal to NL, then P = NP. In addition, we show if L is equal to NL, then P = NP. In this way, we prove the complexity class P is equal to NP. Furthermore, we demonstrate the complexity class L is equal to NP.
 \end{abstract}
 
 \section{Introduction}
 
-In previous years there has been great interest in the verification or checking of computations \cite{LIP90}. Interactive proofs introduced by Goldwasser, Micali and Rackoff and Babi can be viewed as a model of the verification process \cite{LIP90}. Dwork and Stockmeyer and Condon have studied interactive proofs where the verifier is a space bounded computation instead of the original model where the verifier is a time bounded computation \cite{LIP90}. In addition, Blum and Kannan has studied another model where the goal is to check a computation based solely on the final answer \cite{LIP90}. More about probabilistic logarithmic space verifiers and the complexity class $NP$ has been investigated on a technique of Lipton \cite{LIP90}. In this work, we show some results about the logarithmic space verifiers applied to the class $NP$ and logarithmic space disqualifiers applied to the class $coNP$ which solve one of the most important open problems in computer science, that is $P$ versus $NP$.
+In previous years there has been great interest in the verification or checking of computations \cite{LIP90}. Interactive proofs introduced by Goldwasser, Micali and Rackoff and Babi can be viewed as a model of the verification process \cite{LIP90}. Dwork and Stockmeyer and Condon have studied interactive proofs where the verifier is a space bounded computation instead of the original model where the verifier is a time bounded computation \cite{LIP90}. In addition, Blum and Kannan have studied another model where the goal is to check a computation based solely on the final answer \cite{LIP90}. More about probabilistic logarithmic space verifiers and the complexity class $NP$ has been investigated on a technique of Lipton \cite{LIP90}. In this work, we show some results about the logarithmic space verifiers applied to the class $NP$ and logarithmic space disqualifiers applied to the class $coNP$ which solve one of the most important open problems in computer science, that is $P$ versus $NP$.
 
 The $P$ versus $NP$ problem is a major unsolved problem in computer science \cite{CS00}. This is considered by many to be the most important open problem in the field \cite{CS00}. It is one of the seven Millennium Prize Problems selected by the Clay Mathematics Institute to carry a US\$1,000,000 prize for the first correct solution \cite{CS00}. The precise statement of the $P=NP$ problem was introduced in 1971 by Stephen Cook in a seminal paper \cite{CS00}. In 2012, a poll of 151 researchers showed that 126 (83\%) believed the answer to be no, 12 (9\%) believed the answer is yes, 5 (3\%) believed the question may be independent of the currently accepted axioms and therefore impossible to prove or disprove, 8 (5\%) said either do not know or do not care or don't want the answer to be yes nor the problem to be resolved \cite{GA12}.
 
@@ -105,7 +105,7 @@ We measure the time of a verifier only in terms of the length of $w$, so a polyn
 We will extend the definition of succinct disqualification for an element $w \in L_{2}$ when $L_{2} \in coNP$ as the polynomially bounded string $c$ by $w$ such that $M(w, c) = ``no"$ and $M$ is the polynomial time verifier of the complement of $L_{2}$ in $NP$.
 \end{definition}
 
-\subsection{Hypothesis}
+\subsection{First Hypothesis}
 
 A function $f : \Sigma^{*} \rightarrow \Sigma^{*}$ is a polynomial time computable function if some deterministic Turing machine $M$, on every input $w$, halts in polynomial time with just $f(w)$ on its tape \cite{MS06}. Let $\{0, 1\}^{*}$ be the infinite set of binary strings, we say that a language $L_{1} \subseteq \{0, 1\}^{*}$ is polynomial time reducible to a language $L_{2} \subseteq \{0, 1\}^{*}$, written $L_{1} \leq_{p} L_{2}$, if there is a polynomial time computable function $f : \{0, 1\}^{*} \rightarrow \{0, 1\}^{*}$ such that for all $x \in \{0, 1\}^{*}$:
 \[x \in L_{1} \textit{ if and only if } f(x) \in L_{2}.\]
@@ -136,7 +136,7 @@ A logarithmic space Turing machine has a read-only input tape, a write-only outp
 
 A logarithmic space transducer is a Turing machine with a read-only input tape, a write-only output tape, and read/write work tapes \cite{MS06}. The work tapes must contain at most $O(\log n)$ symbols \cite{MS06}. A logarithmic space transducer $M$ computes a function $f : \Sigma^{*} \rightarrow \Sigma^{*}$, where $f(w)$ is the string remaining on the output tape after $M$ halts when it is started with $w$ on its input tape \cite{MS06}. We call $f$ a logarithmic space computable function \cite{MS06}. We say that a language $L_{1} \subseteq \{0, 1\}^{*}$ is logarithmic space reducible to a language $L_{2} \subseteq \{0, 1\}^{*}$, written $L_{1} \leq_{l} L_{2}$, if there exists a logarithmic space computable function $f : \{0, 1\}^{*} \rightarrow \{0, 1\}^{*}$ such that for all $x \in \{0, 1\}^{*}$:
 \[x \in L_{1} \textit{ if and only if } f(x) \in L_{2}.\]
-The logarithmic space reduction is used in the definition of the complete languages for the classes $L$ and $NL$ \cite{Pap03}. A Boolean formula is in 2-conjunctive normal form, or $2CNF$, if it is in $CNF$ and each clause has exactly two distinct literals. There is a problem called $2SAT$, where we asked whether a given Boolean formula $\phi$ in $2CNF$ is satisfiable. $2SAT$ is complete for $NL$ \cite{Pap03}. Another special case is the class of problems where each clause contains $XOR$ (i.e. exclusive or) rather than (plain) $OR$ operators. This is in $P$, since an $\textit{XOR SAT}$ formula can also be viewed as a system of linear equations mod $2$, and can be solved in cubic time by Gaussian elimination \cite{MM11}. We denote the $XOR$ function as $\oplus$. The $\textit{XOR 2SAT}$ problem will be equivalent to $\textit{XOR SAT}$, but the clauses in the formula have at most two distinct literals \cite{AR00}. $\textit{XOR 2SAT}$ is in $L$ \cite{AR00}, \cite{RM08}.
+The logarithmic space reduction is used in the definition of the complete languages for the classes $L$ and $NL$ \cite{Pap03}. A Boolean formula is in 2-conjunctive normal form, or $2CNF$, if it is in $CNF$ and each clause has exactly two distinct literals. There is a problem called $2SAT$, where we asked whether a given Boolean formula $\phi$ in $2CNF$ is satisfiable. $2SAT$ is complete for $NL$ \cite{Pap03}. Another special case is the class of problems where each clause contains $XOR$ (i.e. exclusive or) rather than (plain) $OR$ operators. This is in $P$, since an $\textit{XOR SAT}$ formula can also be viewed as a system of linear equations mod $2$, and can be solved in cubic time by Gaussian elimination \cite{MM11}. We denote the $XOR$ function as $\oplus$. The $\textit{XOR 2SAT}$ problem will be equivalent to $\textit{XOR SAT}$, but the clauses in the formula have exactly two distinct literals. $\textit{XOR 2SAT}$ is in $L$ \cite{AR00}, \cite{RM08}.
 
 We can give a certificate-based definition for $NL$ \cite{AB09}. The certificate-based definition of $NL$ assumes that a logarithmic space Turing machine has another separated read-only tape \cite{AB09}. On each step of the machine, the machine's head on that tape can either stay in place or move to the right \cite{AB09}. In particular, it cannot reread any bit to the left of where the head currently is \cite{AB09}. For that reason this kind of special tape is called $``$read-once$"$ \cite{AB09}. Besides, in the certificate-based definition of $NL$, we assume the certificate string is appropriated for the instance \cite{Pap03}. For example, a truth assignment for a Boolean formula $\phi$ is appropriated for the instance when every possible variable in $\phi$ could be evaluated in that truth assignment string, but we cannot affirm the same for every possible binary string.
 
@@ -145,6 +145,34 @@ A language $L_{1}$ is in $NL$ if there exists a deterministic logarithmic space 
 \[x \in L_{1} \Leftrightarrow \exists \textit{ appropriated } u \in \{0, 1\}^{p(|x|)} \textit{ such that } M(x, u) = ``yes" \]
 where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its input tape and the certificate $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read/write tapes for every input $x$ where $|\ldots|$ is the bit-length function \cite{AB09}. $M$ is called a logarithmic space verifier \cite{AB09}.
 \end{definition}
+
+We state the following Hypothesis:
+
+\begin{hypothesis}
+\label{hypothesis1}
+Given a nonempty language $L_{1} \in L$, there is a language $L_{2}$ in $\textit{NP--complete}$ with a deterministic Turing machine $M$, where:
+\[L_{2} = \{w: M(w, u) = y, \exists \textit{ appropriated } u \textit{ such that } y \in L_{1}\}\]
+when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$. In this way, there is an $\textit{NP--complete}$ language defined by a logarithmic space verifier $M$ such that when the input is an element of the language with its certificate, then $M$ outputs a string which belongs to a single language in $L$.
+\end{hypothesis}
+
+From the early days of automata and complexity theory,  two  different  models  of  Turing  machines  are  considered, the offline and online machines \cite{KU15}. Each model has a read-only input tape and some work tapes \cite{KU15}. The offline machines may read their input two-way while the online machines are not allowed to move the input head to the left \cite{KU15}. In the terminology of the (generalized) Turing machine models are called two-way and one-way Turing machines, respectively \cite{KU15}.
+
+Hartmanis and Mahaney have investigated the classes $1L$ and $1NL$ of languages recognizable by deterministic one-way logarithmic space Turing machine and nondeterministic one-way logarithmic space Turing machine, respectively \cite{HM81}. They have shown that $1L \neq 1NL$ (by looking at a uniform variant of the string non-equality problem from communication complexity theory) and have defined a natural complete problem for $1NL$ under deterministic one-way logarithmic space reductions \cite{HM81}. Furthermore, they have proven that $1NL \subseteq L$ if and only if $L=NL$ \cite{HM81}.
+
+\begin{theorem}
+\label{neg-implication}
+If the Hypothesis \ref{hypothesis1} is true, therefore when $L \neq NL$, then $P = NP$.
+\end{theorem}
+
+\begin{proof}
+We can simulate the computation $M(w, u) = y$ in the Hypothesis \ref{hypothesis1} by a nondeterministic logarithmic space Turing machine $N$ such that $N(w) = y$, since we can read the certificate string $u$ within the read-once tape by a work tape in a nondeterministic logarithmic space generation of symbols contained in $u$ \cite{Pap03}. Certainly, we can simulate the reading of one symbol from the string $u$ into the read-once tape just nondeterministically generating the same symbol in the work tapes using a logarithmic space \cite{Pap03}.
+
+If we suppose that $L \subset 1NL$, then we can accept the elements of the language $L_{1} \in L$ by a nondeterministic one-way logarithmic space Turing machine $M'$. In this way, there is a nondeterministic logarithmic space Turing machine $M''(w) = M'(N(w))$ which will accept when $w \in L_{2}$. Consequently, $M''$ is a nondeterministic logarithmic space Turing machine which decides the language $L_{2}$. The reason is because we can simulate the output string of $N(w)$ within a read-once tape and thus, we can compute in a nondeterministic logarithmic space the logarithmic space composition using the same techniques of the logarithmic space composition reduction, but without any reset of the computation \cite{Pap03}. Certainly, we do not need to reset the computation of $N(w)$ for the reading at once of a symbol in the output string of $N(w)$ by the nondeterministic one-way logarithmic space Turing machine $M'$. Therefore, $L_{2}$ is in $NL$ and thus, $L_{2} \in P$ due to $NL \subseteq P$ \cite{Pap03}. If any single $\textit{NP--complete}$ problem can be solved in polynomial time, then $P = NP$ \cite{CLRS01}. Since $L_{2} \in P$ and $L_{2} \in \textit{NP--complete}$, then we obtain the complexity class $P$ is equal to $NP$ under the assumption that $L \subset 1NL$.
+
+Hartmanis and Mahaney have also shown with their result that if $1NL \subseteq L$ or even $1NL \subset L$, then $L=NL$, because they proved there is a complete problem for both $1NL$ and $NL$ at the same time \cite{HM81}. In this way, if $L \neq NL$, then $L \subset 1NL$ by contraposition \cite{Pap03}. Since we already obtained that $P = NP$ under the assumption that $L \subset 1NL$, therefore if $L \neq NL$, then $P = NP$.
+\end{proof}
+
+\subsection{Second Hypothesis}
 
 An important complexity class is $\textit{coNP--complete}$ \cite{GJ79}. A language $L_{1} \subseteq \{0, 1\}^{*}$ is $\textit{coNP--complete}$ if:
 
@@ -164,10 +192,6 @@ where by $M(x, u)$ we denote the computation of $M$ where $x$ is placed on its i
 \end{definition}
 
 For example, there is a well-known $coNL$ problem that states: Given a directed graph $G = (V, E)$ and two nodes $s, t \in V$, is there no possible path from $s$ to $t$? In that problem, an appropriated disqualification $u$ is a sequence of nodes contained in $V$ when $s$ is the first node and $t$ is the last one such that this sequence of nodes is not a path: There is at least a consecutive pair of nodes in the sequence where they are not connected by an edge.
-
-From the early days of automata and complexity theory,  two  different  models  of  Turing  machines  are  considered, the offline and online machines \cite{KU15}. Each model has a read-only input tape and some work tapes \cite{KU15}. The offline machines may read their input two-way while the online machines are not allowed to move the input head to the left \cite{KU15}. In the terminology of the (generalized) Turing machine models are called two-way and one-way Turing machines, respectively \cite{KU15}.
-
-Hartmanis and Mahaney have investigated the classes $1L$ and $1NL$ of languages recognizable by deterministic one-way logarithmic space Turing machine and nondeterministic one-way logarithmic space Turing machine, respectively \cite{HM81}. They have shown that $1L \neq 1NL$ (by looking at a uniform variant of the string non-equality problem from communication complexity theory) and have defined a natural complete problem for $1NL$ under deterministic one-way logarithmic space reductions \cite{HM81}. Furthermore, they have proven that $1NL \subseteq L$ if and only if $L=NL$ \cite{HM81}.
 
 We state the following Hypothesis:
 
@@ -189,7 +213,106 @@ We can accept the elements of the language $L_{1} \in 1NL$ by a nondeterministic
 
 \section{Results}
 
-\subsection{Hypothesis}
+\subsection{First Hypothesis}
+
+We show a previous known $\textit{NP--complete}$ problem:
+
+\begin{definition}
+$\textbf{NAE 3SAT}$
+
+INSTANCE: A Boolean formula $\phi$ in $3CNF$.
+
+QUESTION: Is there a truth assignment for $\phi$ such that each clause has at least one true literal and at least one false literal?
+
+REMARKS: $\textit{NAE 3SAT} \in \textit{NP--complete}$ \cite{GJ79}.
+\end{definition}
+
+We define a new problem:
+
+\begin{definition}
+$\textbf{MAXIMUM EXCLUSIVE-OR 2SAT}$
+
+INSTANCE: A positive integer $K$ and a Boolean formula $\phi$ that is an instance of $\textit{XOR 2SAT}$.
+
+QUESTION: Is there a truth assignment in $\phi$ such that at most $K$ clauses are unsatisfied?
+
+REMARKS: We denote this problem as $MAX\oplus2SAT$.
+\end{definition}
+
+
+\begin{theorem}
+\label{completeness}
+$MAX\oplus2SAT \in \textit{NP--complete}$.
+\end{theorem}
+
+\begin{proof}
+It is trivial to see $MAX\oplus2SAT \in NP$ \cite{Pap03}. Given a Boolean formula $\phi$ in $3CNF$ with $n$ variables and $m$ clauses, we create three new variables $a_{c_{i}}$, $b_{c_{i}}$ and $d_{c_{i}}$ for each clause $c_{i} = (x \vee y \vee z)$ in $\phi$, where $x$, $y$ and $z$ are literals, in the following formula:
+\[P_{i} = (a_{c_{i}} \oplus b_{c_{i}}) \wedge (b_{c_{i}} \oplus d_{c_{i}}) \wedge (a_{c_{i}} \oplus d_{c_{i}}) \wedge (x \oplus a_{c_{i}}) \wedge (y \oplus b_{c_{i}}) \wedge (z \oplus d_{c_{i}}).\]
+We can see $P_{i}$ has at most one unsatisfied clause for some truth assignment if and only if at least one member of $\{x,y,z\}$ is true and at least one member of $\{x,y,z\}$ is false for the same truth assignment. Hence, we can create the Boolean formula $\psi$ as the conjunction of the $P_{i}$ formulas for every clause $c_{i}$ in $\phi$, such that $\psi = P_{1} \wedge \ldots \wedge P_{m}$. Finally, we obtain that:
+\[\phi \in \textit{NAE 3SAT} \textit{ if and only if } (\psi, m) \in MAX\oplus2SAT.\]
+Consequently, we prove $\textit{NAE 3SAT} \leq_{p} MAX\oplus2SAT$ where we already know the language $\textit{NAE 3SAT} \in \textit{NP--complete}$ \cite{GJ79}. To sum up, we show $MAX\oplus2SAT \in \textit{NP--hard}$ and $MAX\oplus2SAT \in NP$ and thus, $MAX\oplus2SAT \in \textit{NP--complete}$.
+\end{proof}
+
+\begin{theorem}
+\label{proof}
+There is a deterministic Turing machine $M$, where:
+\[MAX\oplus2SAT = \{w: M(w, u) = y, \exists \textit{ appropriated } u \textit{ such that } y \in \textit{XOR 2SAT}\}\]
+when $M$ runs in logarithmic space in the length of $w$, $u$ is placed on the special read-once tape of $M$, and $u$ is polynomially bounded by $w$.
+\end{theorem}
+
+\begin{proof}
+Given a valid instance $(\psi, K)$ for $MAX\oplus2SAT$ when $\psi$ has $m$ clauses, we can create a certificate array $A$ which contains $K$ different natural numbers in ascending order which represents the indexes of the clauses in $\psi$ that we are going to remove from the instance. We read at once the elements of the array $A$ and we reject whether this is not an appropriated certificate: That is when the numbers are not sorted in ascending order, or the array $A$ does not contain exactly $K$ elements, or the array $A$ contains a number that is not between $1$ and $m$. While we read the elements of the array $A$, we remove the clauses from the instance $(\psi, K)$ for $MAX\oplus2SAT$ just creating another instance $\phi$ for $\textit{XOR 2SAT}$ where the Boolean formula $\phi$ does not contain the $K$ different indexed clauses $\psi$ represented by the numbers in $A$. Therefore, we obtain the array $A$ would be valid according to the Theorem \ref{proof} when:
+\[(\psi, K) \in MAX\oplus2SAT \Leftrightarrow (\exists \textit{ appropriated array } A \textit{ such that } \phi \in \textit{XOR 2SAT}).\]
+Furthermore, we can make this verification in logarithmic space such that the array $A$ is placed on the special read-once tape, because we read at once the elements in the array $A$ and we assume the clauses in the input $\psi$ are indexed from left to right. Hence, we only need to iterate from the elements of the array $A$ to verify whether the array is an appropriated certificate and also remove the $K$ different clauses from the Boolean formula $\psi$ when we write the final clauses to the output. This logarithmic space verification will be the Algorithm \ref{algorithm1}. We assume whether a value does not exist in the array $A$ into the cell of some position $i$ when $A[i] = \textit{undefined}$. In addition, we reject immediately when the following comparisons:
+\[A[i] \leq max \vee A[i] < 1 \vee A[i] > m\]
+hold at least into one single binary digit. Note, in the loop $j$ from $min$ to $max - 1$, we do not output any clause when $max - 1 < min$.
+
+\begin{algorithm}
+\caption{Logarithmic space verifier}\label{algorithm1}
+\begin{algorithmic}[1]
+\Comment{A valid instance for $MAX\oplus2SAT$ with its certificate}
+\Procedure{$\textit{VERIFIER}$}{$(\psi, K), A$}
+\Comment{Initialize minimum and maximum values}
+\State $min \gets 1$
+\State $max \gets 0$
+\Comment{Iterate for the elements of the certificate array $A$}
+\For{$i$}{$1$}{$K + 1$}
+\If{$i = K+1$}
+\Comment{There exists a $K+1$ element in the array}
+\If{$A[i] \neq \textit{undefined}$}
+\Comment{Reject the certificate}
+\State \textbf{return} $``no"$
+\EndIf
+\Comment{$m$ is the number of clauses in $\psi$}
+\State $max \gets m + 1$
+\ElsIf{$A[i] = \textit{undefined} \vee A[i] \leq max \vee A[i] < 1 \vee A[i] > m$}
+\Comment{Reject the certificate}
+\State \textbf{return} $``no"$
+\Else
+\State $max \gets A[i]$
+\EndIf
+\Comment{Iterate for the clauses of the Boolean formula $\psi$}
+\For{$j$}{$min$}{$max - 1$}
+\Comment{Output the indexed $j^{th}$ clause in $\psi$}
+\State \textbf{output} $``\wedge c_{j}"$
+\EndFor
+\State $min \gets max + 1$
+\EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+\end{proof}
+
+\begin{theorem}
+\label{result1}
+The Hypothesis \ref{hypothesis1} is true.
+\end{theorem}
+
+\begin{proof}
+This is a consequence of Theorems \ref{completeness} and \ref{proof}.
+\end{proof}
+
+\subsection{Second Hypothesis}
 
 We show a previous known $\textit{coNP--complete}$ problem:
 
@@ -284,8 +407,18 @@ The Hypothesis \ref{hypothesis2} is true.
 This is a consequence of Theorems \ref{1nl} and \ref{demonstration}.
 \end{proof}
 
+
+\subsection{Consequences}
+
 \begin{theorem}
-\label{equal-NP}
+If $L \neq NL$ then $P = NP$.
+\end{theorem}
+
+\begin{proof}
+This is a direct consequence of Theorems \ref{neg-implication} and \ref{result1}.
+\end{proof}
+
+\begin{theorem}
 If $L = NL$ then $P = NP$.
 \end{theorem}
 
@@ -293,80 +426,21 @@ If $L = NL$ then $P = NP$.
 This is a direct consequence of Theorems \ref{pos-implication} and \ref{result2}.
 \end{proof}
 
-\subsection{L versus NL}
-
-A directed graph $G = (V, E)$ is topologically sorted when for any pair of edges $(a, b)$ and $(b, c)$ in $G$, then the edge $(a, b)$ is listed before $(b, c)$ \cite{HM81}.
-
-We show a previous known $\textit{NL--complete}$ problem:
-
-\begin{definition}
-$\textbf{TAGAP}$
-
-INSTANCE: Given a directed graph $G = (V, E)$ that is topologically sorted and two nodes $s, t \in V$.
-
-QUESTION: Is there a path from $s$ to $t$?
-
-REMARKS: $TAGAP \in \textit{NL--complete}$ \cite{HM81}. Certainly, this problem remains in $\textit{NL--complete}$ even if the graph is not acyclic \cite{HM81}.
-\end{definition}
-
-\begin{definition}
-An instance $\phi$ of $\textit{XOR 2SAT}$ is topologically sorted when for any pair of clauses $(a \oplus b)$ and $(b \oplus c)$ in $\phi$, then the clause $(a \oplus b)$ is listed before $(b \oplus c)$.
-\end{definition}
-
-\begin{definition}
-$\textbf{TAGAP 2SAT}$
-
-INSTANCE: Given an instance $\phi$ of $\textit{XOR 2SAT}$ that is topologically sorted.
-
-QUESTION: Is there a truth assignment, such that each clause of one literal is satisfied and each clause of two literals has not a true and false evaluated literals at the same time?
-\end{definition}
-
-\begin{theorem}
-$\textit{TAGAP 2SAT} \in L$.
-\end{theorem}
-
-\begin{proof}
-We can check whether an instance $\phi$ of $\textit{XOR 2SAT}$ is topologically sorted in logarithmic space. Certainly, for each clause $(a \oplus b)$ we can verify in logarithmic space whether there is not another clause $(b \oplus c)$ that is listed before of $(a \oplus b)$. In addition, given an instance $\phi$ of $\textit{XOR 2SAT}$ with $m$ clauses, for each clause of two literals $c_{i} = (x \oplus y)$ in the input tape, we create a new clause $d_{i} = (x \oplus \rightharpoondown y)$ into the output tape, where $x$ and $y$ are literals. Moreover, for each clause of one literal $c_{i} = (x)$ in the input tape, we create the same clause $d_{i} = (x)$ into the output tape, where $x$ is a literal. Hence, we can create a new instance $\psi$ of $\textit{XOR 2SAT}$ as the conjunction of the $d_{i}$ clauses for every clause $c_{i}$ in $\phi$, such that $\psi = d_{1} \wedge \ldots \wedge d_{m}$. Finally, we obtain that:
-\[\phi \in \textit{TAGAP 2SAT} \textit{ if and only if } \psi \in \textit{XOR 2SAT}.\]
-Consequently, we prove $\textit{TAGAP 2SAT} \leq_{l} \textit{XOR 2SAT}$ where we already know the language $\textit{XOR 2SAT} \in L$ \cite{AR00}, \cite{RM08}. Since $L$ is closed under logarithmic space reductions, then we obtain that $\textit{TAGAP 2SAT} \in L$ \cite{Pap03}.
-\end{proof}
-
-\begin{lemma}
-\label{nl-complete}
-We have the complement of $TAGAP$ complies with $coTAGAP \in \textit{NL--complete}$.
-\end{lemma}
-
-\begin{proof}
-This is trivially true since $NL$ is closed under complement \cite{Pap03}.
-\end{proof}
-
-\begin{theorem}
-\label{reduction}
-$coTAGAP \leq_{l} \textit{TAGAP 2SAT}$.
-\end{theorem}
-
-\begin{proof}
-Given a directed graph $G = (V, E)$ that is topologically sorted and two nodes $s, t \in V$, for each edge $(x, y)$ in the input tape from left to right, we create a new clause $(x \oplus y)$ for an instance $\phi$ of $\textit{XOR 2SAT}$ into the output tape, where $x$ and $y$ are positive literals represented by the positive integers $x$ and $y$ which are two nodes in $G$. In addition, before we generate the first clause from the edges, then we create the clause $(\rightharpoondown s)$ into the output tape, and after we generate all the clauses, then we create the clause $(t)$ into the output tape from the IN and OUT nodes of the possible path $s, t \in V$: This is possible because an instance of $\textit{XOR 2SAT}$ have clauses of at most two literals \cite{AR00}.
-We can see the final instance $\phi$ of $\textit{XOR 2SAT}$ into the output tape will be topologically sorted, since we create the clauses through the edges from left to right with the exception of $(\rightharpoondown s)$ that is the first clause and $(t)$ that is the last one in $\phi$. Hence, if $\phi$ is an acceptance instance of $\textit{TAGAP 2SAT}$, then there is no a possible path from $s$ to $t$ in $G$, because it is necessary that $s$ and $t$ must be false and true on the clauses $(\rightharpoondown s)$ and $(t)$, respectively. Certainly, if there is path from $s$ to $t$, then $s$ and $t$ should be both true or both false in order the instance $\phi$ of $\textit{TAGAP 2SAT}$ could be possible accepted. Finally, we obtain that:
-\[G \in coTAGAP \textit{ if and only if } \phi \in \textit{TAGAP 2SAT}.\]
-Consequently, we prove $coTAGAP \leq_{l} \textit{TAGAP 2SAT}$ \cite{Pap03}.
-\end{proof}
-
-\begin{theorem}
-\label{equal-L}
-$L = NL$.
-\end{theorem}
-
-\begin{proof}
-A single language in $\textit{NL--complete}$ that is logarithmic space reduced to another language $L$, it is sufficiently to prove $L = NL$, since $L$ and $NL$ are closed under logarithmic space reduction \cite{Pap03}. Therefore, this is direct result from Lemma \ref{nl-complete} and Theorem \ref{reduction}.
-\end{proof}
-
 \begin{theorem}
 $P = NP$.
 \end{theorem}
 
 \begin{proof}
-This is a direct consequence of Theorems \ref{equal-NP} and \ref{equal-L}.
+Since we have either $L \neq NL$ or $L = NL$ is true, then the complexity class $P$ is equal to $NP$.
+\end{proof}
+
+\begin{theorem}
+\label{nl}
+$NL = NP$.
+\end{theorem}
+
+\begin{proof}
+Since the polynomial time reduction in Theorem \ref{completeness} could be easily transformed in a logarithmic space reduction, then the $\textit{NP--complete}$ problem in Theorem \ref{neg-implication}, that would be $MAX\oplus2SAT$, is necessarily in $NL$ and thus all the problems in $NP$ when $L \neq NL$, because of the Cook's Theorem can also be transformed in a logarithmic space reduction \cite{GJ79}. Certainly, every $NP$ problem could be logarithmic space reduced to $SAT$ by the Cook's Theorem algorithm and $SAT$ can be indeed logarithmic space reduced to $\textit{NAE 3SAT}$ \cite{GJ79}. For the same reason, the $\textit{coNP--complete}$ problem in Theorem \ref{pos-implication}, that would be $3UNSAT$, is necessarily in $coNL$ and thus all the problems in $coNP$ when $L = NL$, because of the problem $UNSAT$ can be actually logarithmic space reduced to $3UNSAT$ \cite{GJ79}. Since we have either $L \neq NL$ or $L = NL$ is true, then the complexity class $NL$ is equal to $NP$.
 \end{proof}
 
 \begin{theorem}
@@ -374,7 +448,7 @@ $L = NP$.
 \end{theorem}
 
 \begin{proof}
-The $\textit{coNP--complete}$ problem in Theorem \ref{pos-implication}, that would be $3UNSAT$, is necessarily in $coNL$ and thus all the problems in $coNP$ when $L = NL$, because of every problem in $coNP$ can be actually logarithmic space reduced to $3UNSAT$ \cite{GJ79}. Certainly, every $coNP$ problem could be logarithmic space reduced to $UNSAT$ by the Cook's Theorem algorithm and $UNSAT$ can be indeed logarithmic space reduced to $3UNSAT$ \cite{GJ79}. Since we have that $L = NL = coNL$ is true, then the complexity class $L$ is equal to $NP$.
+Under the assumption of $L \subseteq 1NL$, then we would obtain that $1NL = NL$. Certainly, the logarithmic space verifier of Theorem \ref{proof} works into one-way when $L \subseteq 1NL$. Indeed, the logarithmic space verifier through the certificate generates the output into one-way according to the arguments provided by the proof in Theorem \ref{proof}. Moreover, we know that $\textit{XOR 2SAT} \in 1NL$ under the assumption of $L \subseteq 1NL$, since $\textit{XOR 2SAT}$ is in $L$ \cite{AR00}, \cite{RM08}. In this way, we obtain that $MAX\oplus2SAT \in 1NL$. Since $MAX\oplus2SAT$ is $\textit{NP--complete}$ under logarithmic space reductions and $NL = NP$ due to Theorem \ref{nl}, then we would deduce that $1NL = NL$, because of every problem in $NP$ could be reduced to $MAX\oplus2SAT$ under $1NL$-reductions. However, it is a known result that $1NL \neq NL$ \cite{MI92}. Consequently, we obtain that $1NL \subset L$ as a consequence of this contradiction. Since $1NL \subset L$ implies $L=NL$ \cite{HM81}, then we have the complexity class $L$ is equal to $NP$.
 \end{proof}
 
 \section{Conclusions}
